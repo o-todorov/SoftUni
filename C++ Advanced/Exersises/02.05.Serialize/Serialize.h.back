@@ -1,0 +1,80 @@
+#ifndef SERIALIZE_H
+#define SERIALIZE_H
+
+#include <string>
+
+#include "Company.h"
+
+using namespace std;
+
+byte*  serializeToMemory(string companiesString, size_t& bytesWritten) {
+
+	bytesWritten = 1; //инициализира с 1 баит за броя компании
+
+	vector <Company> companies;
+
+
+	std::istringstream companiesIn(companiesString);
+		Company company;
+
+	while ( companiesIn >> company ) {	// прочита компаниите от входа
+										// трябва ни за първия байт
+		companies.push_back(company);
+
+		bytesWritten += 1;				// сумира всички байтове за да може да задели памет за масив който би съдържал всичкото инфо
+		bytesWritten += company.getName().size() + 1;
+		bytesWritten += 1;
+		bytesWritten += company.getEmployees().size() * 2 ;
+	}
+
+	byte* ptr = new byte[bytesWritten]; // Динамично заделяне на памет за масива
+
+	byte* pt = ptr;		// хелпер пойнтер за времето на записа
+
+	*pt = companies.size();  // последователни записи на данните като пойнтера
+	pt++;					// след всеки запис се инкрементира към следващ адрес
+
+	for ( Company c : companies ) {
+
+		*pt = c.getId();
+		pt++;
+
+		for (char  s : c.getName() ) {
+			*pt = s;
+			pt++;
+		}
+
+		*pt = '\0';
+		pt++;
+
+		*pt = c.getEmployees().size();
+		pt++;
+
+		for ( pair <char, char> p : c.getEmployees() ) {
+			*pt = p.first;
+			pt++;
+
+			*pt = p.second;
+			pt++;
+		}
+
+
+	}
+
+
+	pt = nullptr;	// чисти временния пойнтер
+
+
+	return ptr;		// връща стартовия адрес на записа
+}
+
+
+
+
+
+
+
+
+
+
+#endif // !SERIALIZE_H
