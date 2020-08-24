@@ -7,7 +7,7 @@ class NumbersExtractor:public BufferedExtractor {
 public:
 	NumbersExtractor(std::istream& stream): BufferedExtractor(stream) {}
 
-	virtual bool shouldBuffer(char symbol) {
+	virtual bool shouldBuffer(char symbol)override {
 		return isdigit(symbol);
 
 	}
