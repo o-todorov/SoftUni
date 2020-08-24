@@ -10,9 +10,8 @@ typedef std::shared_ptr<FileSystemObjectsContainer>  ptr_FSOCont;
 
 class Explorer {
 	std::vector<ptr_FSO >& rootObjects;
+	std::vector<ptr_FSO > clipbrd;
 	std::shared_ptr<Directory> currDir;
-	std::shared_ptr<Directory> clipbrd;
-	std::shared_ptr<Directory> rootDir;
 	std::shared_ptr<Shortcuts> shortcuts;
 
 
@@ -27,6 +26,7 @@ public:
 	void setCurrDirectory(const std::shared_ptr<Directory> dir);
 	std::shared_ptr<Directory> getCurrDirectory();
 	friend void addObj(const ptr_FSO newObj, Explorer* expl);
+	friend ptr_FSO getFSObyName(const  std::string& name, Explorer* expl);
 
 	~Explorer() {
 	}
@@ -34,42 +34,42 @@ public:
 
 ////////////          DEFINITIONS       /////////////////
 
-
-
 bool operator ==(ptr_FSO l, std::string r) {
 	return l->getName() == r;
 }
 
-template <typename Iterator>
-ptr_FSO getFSObyName(const Iterator begin, const Iterator end, const  std::string& name) {
-	auto f = find(begin, end, name);
+template <typename T>
+ptr_FSO getFSO(const T& container, const  std::string& name) {
+	auto f = find(container.begin(), container.end(), name);
 
-	if ( f != end )	return *f;
+	if ( f != container.end() )	return *f;
 
 	else return nullptr;
 }
 
-//void moveTo(ptr_FSO obj, std::shared_ptr<Directory> container) {
-//	container->add(obj);
-//	obj->setParent(container);
-//}
-
-void addObj(const ptr_FSO newObj, Explorer* expl) {
-	if ( expl->currDir != nullptr ) {
-		expl->currDir->add(newObj);
-		newObj->setParent(expl->currDir);
-	}
+ptr_FSO getFSObyName(const  std::string& name, Explorer* expl) {
+	if ( expl->currDir )
+		return getFSO(*(expl->currDir), name);
 	else
-		expl->rootObjects.push_back(newObj);
+		return getFSO(expl->rootObjects, name);
 }
 
 Explorer::Explorer(std::vector<ptr_FSO>& rootObjects):
-	rootObjects(rootObjects),
-	clipbrd(std::make_shared<Directory>("Clipboard")),
-	rootDir(std::make_shared<Directory>("ROOT")) {
-	rootDir->begin() = rootObjects.begin();
-	rootDir->end() = rootObjects.end();
+	rootObjects(rootObjects) {
 }
+
+void addObj(const ptr_FSO newObj, Explorer* expl) {
+	if ( expl->currDir ) {
+		expl->currDir->add(newObj);
+		newObj->setParent(expl->currDir);
+	}
+	else {
+		expl->rootObjects.push_back(newObj);
+		std::weak_ptr<FileSystemObject> w;
+		newObj->setParent(w);
+	}
+}
+
 void Explorer::createFile(const std::string& filename, const std::string& contents) {
 	addObj(std::make_shared<File>(filename, contents), this);
 }
@@ -80,56 +80,43 @@ void Explorer::createDirectory(const std::string& directory) {
 
 void Explorer::createShortcut(const std::string& name) {
 	if ( !this->shortcuts ) {
-		shortcuts = std::make_shared<Shortcuts>();
-		this->rootObjects.push_back(shortcuts);
+		this->shortcuts = std::make_shared<Shortcuts>();
+		this->rootObjects.push_back(this->shortcuts);
 	}
-	ptr_FSO o = nullptr;
-
-	if ( this->currDir )
-		o = getFSObyName(this->currDir->begin(), this->currDir->end(), name);
-	else
-		o = getFSObyName(this->rootObjects.begin(), this->rootObjects.end(), name);
+	ptr_FSO o = getFSObyName(name, this);
 
 	if ( o )this->shortcuts->add(o);
 }
 
 void Explorer::cut(const std::string& name) {
-	if ( name == "" ) return;
-	ptr_FSO o = nullptr;
+	ptr_FSO o = getFSObyName(name, this);
 
-	if ( this->currDir )
-		o = getFSObyName(this->currDir->begin(), this->currDir->end(), name);
-	else
-		o = getFSObyName(this->rootObjects.begin(), this->rootObjects.end(), name);
-
-	if ( o )this->clipbrd->add(o);
+	if ( o )this->clipbrd.push_back(o);
 }
 
 void Explorer::paste() {
-	for ( ptr_FSO fso : *this->clipbrd ) {
-		if ( fso->getParent().lock() )
-			std::dynamic_pointer_cast< Directory >
-			(fso->getParent().lock())->remove(fso);
-		else {
-			auto it = find(this->rootObjects.begin(), this->rootObjects.end(), fso->getName());
-			this->rootObjects.erase(it);
-		}
+	auto it = this->clipbrd.begin();
 
-		addObj(fso, this);
-		this->clipbrd->remove(fso);
+	while ( !this->clipbrd.empty() ) {
+		auto oldparent = std::dynamic_pointer_cast< Directory >((this->clipbrd[0])->getParent().lock());
+
+		addObj(this->clipbrd[0], this);
+
+		if ( oldparent )oldparent->remove((*this->clipbrd.begin()));
+		else this->rootObjects.erase(find(this->rootObjects.begin(), this->rootObjects.end(), this->clipbrd[0]));
+
+		this->clipbrd.erase(this->clipbrd.begin());
 	}
 }
 
 void Explorer::navigate(const std::string& path) {
 	ptr_FSO newDir = nullptr;
 
-	if ( path == ".." ) {
+	if ( path == ".." )
 		newDir = this->currDir->getParent().lock();
-	}
-	else {
-		if ( this->currDir )	newDir = getFSObyName(this->currDir->begin(), this->currDir->end(), path);
-		else newDir = getFSObyName(this->rootObjects.begin(), this->rootObjects.end(), path);
-	}
+	else
+		newDir = getFSObyName(path, this);
+
 	this->setCurrDirectory(std::dynamic_pointer_cast< Directory >(newDir));
 }
 
@@ -138,7 +125,7 @@ void Explorer::setCurrDirectory(const std::shared_ptr<Directory> dir) {
 }
 
 std::shared_ptr<Directory> Explorer::getCurrDirectory() {
-	return currDir;
+	return this->currDir;
 }
 
 

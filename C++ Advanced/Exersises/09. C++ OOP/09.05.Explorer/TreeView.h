@@ -3,18 +3,18 @@
 #define TREE_VIEW_H
 
 #include <set>
-#include <sstream>
 
 typedef std::shared_ptr<FileSystemObject>  ptr_FSO;
 
 typedef std::shared_ptr<FileSystemObjectsContainer>  ptr_FSOCont;
 
-bool operator< (const ptr_FSO a,const ptr_FSO b) {
-	return a->getName() < b->getName();
-}
-//bool operator== (const ptr_FSO a,const ptr_FSO b) {
-//		return a->getName() == b->getName() && a->getPath()==b->getPath();
-//	}
+struct Comp {
+	bool operator() (
+		const ptr_FSO a,
+		const ptr_FSO b)const {
+		return a->getName() < b->getName();
+	}
+};
 
 void reveal(ptr_FSOCont dir, std::ostringstream& out, const int& level);
 
@@ -29,7 +29,7 @@ void revealTree(ptr_FSO fso, std::ostringstream& out, const int& level) {
 }
 
 void reveal(ptr_FSOCont dir, std::ostringstream& out, const int& level) {
-	std::set<ptr_FSO> sortedDirs(dir->begin(), dir->end());
+	std::set<ptr_FSO, Comp> sortedDirs(dir->begin(), dir->end());
 	for ( auto fso : sortedDirs )	revealTree(fso, out, level + 1);
 }
 
