@@ -18,6 +18,19 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CommandExecutor.cpp" />
+    <ClCompile Include="Field.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Snake.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CommandExecutor.h" />
+    <ClInclude Include="Defines.h" />
+    <ClInclude Include="Field.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="Structs.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
