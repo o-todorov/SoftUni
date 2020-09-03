@@ -17,10 +17,11 @@ private:
 };
 
 
-
+// auto sp = std::make_shared<C>(12);
 std::shared_ptr<CommandInterface>  buildCommandInterface(std::string& text) {
+	auto ptr= std::make_shared <Initialization>(text);
 
-	return std::make_shared<CommandInterface>( new Initialization(text));
+	return 
 }
 
 #endif // ! INITIALIZATION_H
