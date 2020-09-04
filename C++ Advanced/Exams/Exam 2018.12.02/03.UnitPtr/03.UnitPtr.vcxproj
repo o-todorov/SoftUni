@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="UnitPtr.cpp" />
     <ClCompile Include="UnitPtrMain.cpp" />
   </ItemGroup>
   <ItemGroup>
