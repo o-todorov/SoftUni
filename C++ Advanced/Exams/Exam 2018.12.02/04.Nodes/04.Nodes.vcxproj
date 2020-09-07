@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DigitsToIntNode.h" />
+    <ClInclude Include="FilterNode.h" />
     <ClInclude Include="InputNode.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeBase.h" />
     <ClInclude Include="NodeNetwork.h" />
     <ClInclude Include="OutputNode.h" />
+    <ClInclude Include="ReverseNode.h" />
+    <ClInclude Include="SumNode.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NodesMain.cpp" />

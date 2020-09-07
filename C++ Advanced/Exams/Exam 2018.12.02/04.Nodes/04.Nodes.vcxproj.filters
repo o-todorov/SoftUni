@@ -30,6 +30,18 @@
     <ClInclude Include="OutputNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FilterNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SumNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReverseNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DigitsToIntNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NodesMain.cpp">
