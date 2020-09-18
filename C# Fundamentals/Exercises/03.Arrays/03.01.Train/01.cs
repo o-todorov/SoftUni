@@ -6,7 +6,24 @@ namespace _03._01.Train
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int wagons = int.Parse(Console.ReadLine());
+            int[] train = new int[wagons];
+            int peoples = 0;
+
+            for (int i = 0; i < wagons; i++)
+            {
+                train[i] = int.Parse(Console.ReadLine());
+            }
+
+            for (int i = 0; i < wagons; i++)
+            {
+                Console.Write($"{train[i]} ");
+                peoples += train[i];
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine(peoples);
         }
     }
 }
