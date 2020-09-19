@@ -8,14 +8,14 @@ namespace _03._09.KaminoFactoryf
         {
             int size = int.Parse(Console.ReadLine());
 
-            int[] currArr = new int[size + 1];
-            int[] maxArr = new int[size];
+            int[] resultArr = new int[size];
+            int[] currArr   = new int[size + 1];
 
             string input = Console.ReadLine();
 
-            int maxSum = 0;
-            int minIndex = size - 1;
-            int maxLength = 0;
+            int resultSum    = 0;
+            int resultIndex  = size - 1;
+            int resultLength = 0;
 
             int bestSeqIDX = 0;
             int currSeqIDX = 0;
@@ -24,23 +24,20 @@ namespace _03._09.KaminoFactoryf
             {
                 currSeqIDX++;
 
-                int currIndex = 0;
+                int idx = 0;
 
                 for (int i = 0; i < input.Length; i++)
                 {
-                    if (input[i] != '!')
-                    {
-                        currArr[currIndex++] = input[i] - '0';
-                    }
+                    if (input[i] != '!')   currArr[idx++] = input[i] - '0';
                 }
 
-                int currSum = 0;
+                int currSum     = 0;
 
-                int currMinIDX = size - 1;
-                int currLength = 0;
+                int currIDX     = size - 1;
+                int currLength  = 0;
 
-                int tmpMinIDX = size - 1;
-                int tmpLength = 0;
+                int tmpIDX      = size - 1;
+                int tmpLength   = 0;
 
                 for (int i = 0; i < currArr.Length; i++)
                 {
@@ -48,7 +45,7 @@ namespace _03._09.KaminoFactoryf
                     {
                         currSum++;
 
-                        if (i < tmpMinIDX) tmpMinIDX = i;
+                        if (i < tmpIDX) tmpIDX = i;
 
                         tmpLength++;
                     }
@@ -57,31 +54,31 @@ namespace _03._09.KaminoFactoryf
                         if (tmpLength > currLength)
                         {
                             currLength = tmpLength;
-                            currMinIDX = tmpMinIDX;
+                            currIDX = tmpIDX;
                         }
 
                         tmpLength = 0;
-                        tmpMinIDX = size;
+                        tmpIDX = size-1;
                     }
 
                 }
 
-                if (currLength > maxLength
-                    || currLength == maxLength && (currMinIDX < minIndex || (currMinIDX == minIndex && currSum > maxSum)))
+                if (currLength > resultLength
+                    || currLength == resultLength && (currIDX < resultIndex || (currIDX == resultIndex && currSum > resultSum)))
                 {
-                    for (int i = 0; i < size; i++) maxArr[i] = currArr[i];
+                    for (int i = 0; i < size; i++) resultArr[i] = currArr[i];
 
                     bestSeqIDX = currSeqIDX;
-                    maxLength = currLength;
-                    minIndex = currMinIDX;
-                    maxSum = currSum;
+                    resultLength = currLength;
+                    resultIndex = currIDX;
+                    resultSum = currSum;
                 }
 
                 input = Console.ReadLine();
             }
 
-            Console.WriteLine($"Best DNA sample {bestSeqIDX} with sum: {maxSum}.");
-            Console.WriteLine(string.Join(" ", maxArr));
+            Console.WriteLine($"Best DNA sample {bestSeqIDX} with sum: {resultSum}.");
+            Console.WriteLine(string.Join(" ", resultArr));
 
         }
     }
