@@ -17,8 +17,7 @@ namespace _03._05.TopIntegers
                 if (arr[i] > maxVal)
                 {
                     maxVal = arr[i];
-                    helperArr[currSize] = maxVal;
-                    currSize++;
+                    helperArr[currSize++] = maxVal;
                 }
             }
 

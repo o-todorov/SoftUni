@@ -10,6 +10,8 @@ namespace _03._04.ArrayRotation
             int[] arr = Console.ReadLine().Split(" ").Select(int.Parse).ToArray();
             int rotations = int.Parse(Console.ReadLine());
 
+            rotations %= arr.Length;
+
             for (int i = 0; i < rotations; i++)
             {
                 int tmp = arr[0];

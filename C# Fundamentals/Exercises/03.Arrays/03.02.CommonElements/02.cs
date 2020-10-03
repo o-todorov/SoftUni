@@ -15,12 +15,14 @@ namespace _03._02.CommonElements
 
             for (int i = 0; i < countB; i++)
             {
-                for (int j = 0; j < countA; j++)
+                if (Array.IndexOf(a, b[i]) != -1)
                 {
-                    if (a[j] == b[i]) Console.Write(a[j] + " ");
+                    Console.Write(b[i] + " ");
                 }
             }
 
         }
+
     }
 }
+
