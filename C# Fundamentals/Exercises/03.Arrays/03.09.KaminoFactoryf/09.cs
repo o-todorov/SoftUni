@@ -1,50 +1,43 @@
 ﻿using System;
+using System.Linq;
 
 namespace _03._09.KaminoFactoryf
 {
-    class Program
+    class Programg
     {
         static void Main(string[] args)
         {
             int size = int.Parse(Console.ReadLine());
 
-            int[] resultArr = new int[size];
-            int[] currArr   = new int[size + 1];
+            int[]   resultArr       = new int[size];
+            int     resultSum       = 0;
+            int     resultIndex     = size;
+            int     resultLength    = 0;
 
-            string input = Console.ReadLine();
+            int     bestSeqIDX      = 0;
+            int     currSeqIDX      = 0;
 
-            int resultSum    = 0;
-            int resultIndex  = size - 1;
-            int resultLength = 0;
+            string  input;
 
-            int bestSeqIDX = 0;
-            int currSeqIDX = 0;
-
-            while (input != "Clone them!")
+            while ((input = Console.ReadLine()) != "Clone them!")
             {
                 currSeqIDX++;
 
-                int idx = 0;
-
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (input[i] != '!')   currArr[idx++] = input[i] - '0';
-                }
+                int[] currArr = input.Split('!', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(int.Parse)
+                    .ToArray();
 
                 int currSum     = 0;
-
-                int currIDX     = size - 1;
+                int currIDX     = size;
                 int currLength  = 0;
 
-                int tmpIDX      = size - 1;
+                int tmpIDX      = size;
                 int tmpLength   = 0;
 
-                for (int i = 0; i < currArr.Length; i++)
+                for (int i = 0; i < size; i++)
                 {
                     if (currArr[i] == 1)
                     {
-                        currSum++;
-
                         if (i < tmpIDX) tmpIDX = i;
 
                         tmpLength++;
@@ -53,28 +46,35 @@ namespace _03._09.KaminoFactoryf
                     {
                         if (tmpLength > currLength)
                         {
-                            currLength = tmpLength;
-                            currIDX = tmpIDX;
+                            currLength  = tmpLength;
+                            currIDX     = tmpIDX;
                         }
 
-                        tmpLength = 0;
-                        tmpIDX = size-1;
+                        tmpLength   = 0;
+                        tmpIDX      = size;
                     }
 
                 }
 
+                if (tmpLength > currLength)
+                {
+                    currLength  = tmpLength;
+                    currIDX     = tmpIDX;
+                }
+
+                currSum = currArr.Sum();
+
                 if (currLength > resultLength
                     || currLength == resultLength && (currIDX < resultIndex || (currIDX == resultIndex && currSum > resultSum)))
                 {
-                    for (int i = 0; i < size; i++) resultArr[i] = currArr[i];
+                    Array.Copy(currArr, resultArr, size);
 
                     bestSeqIDX = currSeqIDX;
                     resultLength = currLength;
                     resultIndex = currIDX;
-                    resultSum = currSum;
+                    resultSum = currArr.Sum();
                 }
 
-                input = Console.ReadLine();
             }
 
             Console.WriteLine($"Best DNA sample {bestSeqIDX} with sum: {resultSum}.");
