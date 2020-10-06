@@ -2,14 +2,16 @@
 <CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
 	<CodeSnippet Format="1.0.0">
 		<Header>
-			<Title>Declare and init int array from Console</Title>
+			<Title>Declare and init Array of integers from Console</Title>
 			<Author>Oleg Todorov</Author>
 			<Description>Declare and initialize int[] from Console</Description>
 			<Shortcut>intarr</Shortcut>
 		</Header>
 		<Snippet>
 			<Code Language="CSharp">
-				<![CDATA[int[] $arr$ = Console.ReadLine().Split(" ").Select(int.Parse).ToArray();]]>
+				<![CDATA[int[] $arr$ = Console.ReadLine()
+						.Split(" ")
+						.Select(int.Parse).ToArray();]]>
 			</Code>
 			<Declarations>
 				<Literal>
