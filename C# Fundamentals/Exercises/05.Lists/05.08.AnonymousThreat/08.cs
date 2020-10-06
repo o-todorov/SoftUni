@@ -40,21 +40,14 @@ namespace _05._08.AnonymousThreat
 
                     words.RemoveAt(a);
 
-                    List<string> range = new List<string>(partitionsCount);
-
                     int i = 0;
 
-                    for (; i < partitionsCount; i++)
+                    for (; i < partitionsCount - 1; i++)
                     {
-                        range.Add(word.Substring(i * charCount, charCount));
+                        words.Insert(a + i, word.Substring(i * charCount, charCount));
                     }
 
-                    i *= charCount;
-
-                    range[partitionsCount - 1] += word.Substring(i, word.Length - i);
-
-                    words.InsertRange(a, range);
-
+                    words.Insert(a + i, word.Substring(i * charCount, word.Length - i * charCount));
                 }
             }
 
