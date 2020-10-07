@@ -21,11 +21,7 @@ namespace _03._05.TopIntegers
                 }
             }
 
-            for (int i = currSize-1; i >= 0; i--)
-            {
-                Console.Write($"{helperArr[i]} ");
-            }
-
+            Console.WriteLine(string.Join(" ",helperArr.ToList().GetRange(0,currSize).ToArray().Reverse()));
 
         }
     }
