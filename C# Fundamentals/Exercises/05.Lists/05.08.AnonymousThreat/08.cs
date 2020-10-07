@@ -47,7 +47,9 @@ namespace _05._08.AnonymousThreat
                         words.Insert(a + i, word.Substring(i * charCount, charCount));
                     }
 
-                    words.Insert(a + i, word.Substring(i * charCount, word.Length - i * charCount));
+                    int pos = i * charCount;
+
+                    words.Insert(a + i, word.Substring(pos, word.Length - pos));
                 }
             }
 
