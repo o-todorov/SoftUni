@@ -13,16 +13,10 @@ namespace _03._01.Train
             for (int i = 0; i < wagons; i++)
             {
                 train[i] = int.Parse(Console.ReadLine());
-            }
-
-            for (int i = 0; i < wagons; i++)
-            {
-                Console.Write($"{train[i]} ");
                 peoples += train[i];
             }
 
-
-            Console.WriteLine();
+            Console.WriteLine(string.Join(" ",train));
             Console.WriteLine(peoples);
         }
     }
