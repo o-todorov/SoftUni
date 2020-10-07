@@ -5,19 +5,23 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.01.Train", "05.01.Train\05.01.Train.csproj", "{E4DBF85C-BC84-4843-BD06-AF595C1AEDBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.02.ChangeList", "05.02.ChangeList\05.02.ChangeList.csproj", "{7CD99B88-796C-499E-A6CE-A2C2451CF5BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.02.ChangeList", "05.02.ChangeList\05.02.ChangeList.csproj", "{7CD99B88-796C-499E-A6CE-A2C2451CF5BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.03.HouseParty", "05.03.HouseParty\05.03.HouseParty.csproj", "{7A4DC5B6-1AE9-4412-BDDC-2A6A860A767E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.03.HouseParty", "05.03.HouseParty\05.03.HouseParty.csproj", "{7A4DC5B6-1AE9-4412-BDDC-2A6A860A767E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.04.ListOperations", "05.04.ListOperations\05.04.ListOperations.csproj", "{E7405121-D797-4A32-A208-90B4417579D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.04.ListOperations", "05.04.ListOperations\05.04.ListOperations.csproj", "{E7405121-D797-4A32-A208-90B4417579D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.05.BombNumbers", "05.05.BombNumbers\05.05.BombNumbers.csproj", "{CF39BAB6-C1FC-47D1-AC7E-B1142F99E218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.05.BombNumbers", "05.05.BombNumbers\05.05.BombNumbers.csproj", "{CF39BAB6-C1FC-47D1-AC7E-B1142F99E218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.06.CardsGame", "05.06.CardsGame\05.06.CardsGame.csproj", "{9DE0920C-0AA7-48E2-A22F-270502C944FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.06.CardsGame", "05.06.CardsGame\05.06.CardsGame.csproj", "{9DE0920C-0AA7-48E2-A22F-270502C944FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.07.AppendArrays", "05.07.AppendArrays\05.07.AppendArrays.csproj", "{A5565D0C-E1B1-45B7-B7FA-775042E2D58F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.07.AppendArrays", "05.07.AppendArrays\05.07.AppendArrays.csproj", "{A5565D0C-E1B1-45B7-B7FA-775042E2D58F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.08.AnonymousThreat", "05.08.AnonymousThreat\05.08.AnonymousThreat.csproj", "{82644F15-CF01-4D4F-BA70-CF890AE30F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.08.AnonymousThreat", "05.08.AnonymousThreat\05.08.AnonymousThreat.csproj", "{82644F15-CF01-4D4F-BA70-CF890AE30F05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.09.PokemonDontGo", "05.09.PokemonDontGo\05.09.PokemonDontGo.csproj", "{44AADF85-7B31-4BDD-9C28-21A870606125}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.10.SoftUniCoursePlanning", "05.10.SoftUniCoursePlanning\05.10.SoftUniCoursePlanning.csproj", "{0FEA23AD-3BCF-434C-952A-7D260101165D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{82644F15-CF01-4D4F-BA70-CF890AE30F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82644F15-CF01-4D4F-BA70-CF890AE30F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82644F15-CF01-4D4F-BA70-CF890AE30F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44AADF85-7B31-4BDD-9C28-21A870606125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44AADF85-7B31-4BDD-9C28-21A870606125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44AADF85-7B31-4BDD-9C28-21A870606125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44AADF85-7B31-4BDD-9C28-21A870606125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FEA23AD-3BCF-434C-952A-7D260101165D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FEA23AD-3BCF-434C-952A-7D260101165D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FEA23AD-3BCF-434C-952A-7D260101165D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FEA23AD-3BCF-434C-952A-7D260101165D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
