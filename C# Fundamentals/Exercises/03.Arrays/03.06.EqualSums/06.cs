@@ -10,16 +10,14 @@ namespace _03._06.EqualSums
         {
             int[] arr = Console.ReadLine().Split(" ").Select(int.Parse).ToArray();
 
-            int left = 0, rigth = 0;
+            int left = 0, rigth = arr.Sum();
             int index = 0;
             bool exist=false;
 
+
             for (int i = 0; i < arr.Length; i++)
             {
-                left = 0; rigth = 0;
-
-                for (int j = 0; j < i ; j++) left += arr[j];
-                for (int j = i + 1; j < arr.Length; j++) rigth += arr[j];
+                rigth -= arr[i];
 
                 if (left == rigth)
                 {
@@ -27,6 +25,8 @@ namespace _03._06.EqualSums
                     exist = true;
                     break;
                 }
+
+                left += arr[i];
             }
 
 
