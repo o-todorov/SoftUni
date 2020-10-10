@@ -12,7 +12,7 @@ public:
 	void process(byte data)override {
 		static int sum = 0;
 
-		if ( ( int ) data == 0 ) {
+		if (  data == '0' ) {
 			this->sendToConnected(( byte ) sum);
 			sum = 0;
 		}
