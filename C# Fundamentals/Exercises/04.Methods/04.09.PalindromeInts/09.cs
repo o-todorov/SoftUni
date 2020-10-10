@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace _04._09.PalindromeInts
 {
@@ -18,18 +19,17 @@ namespace _04._09.PalindromeInts
                     Console.WriteLine("false");
                 }
             }
-
-
-
         }
 
         private static bool isPalindrome(string input)
         {
-            for (int i = 0; i < input.Length/2; i++)
-            {
-                if (input[i] != input[input.Length - 1 - i]) return false;
-            }
-            return true;
+            int mid = input.Length / 2;
+
+            return  input.Substring(0, mid) == 
+                    new String(input.Substring(input.Length - mid, mid)
+                                                                        .ToCharArray()
+                                                                        .Reverse()
+                                                                        .ToArray());
         }
     }
 }
