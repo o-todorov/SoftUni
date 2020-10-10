@@ -58,7 +58,6 @@ namespace _03._09.KaminoFactoryf
                     resultIndex     = currIDX;
                     resultSum       = currSum;
                 }
-
             }
 
             Console.WriteLine($"Best DNA sample {bestSeqIDX} with sum: {resultSum}.");
