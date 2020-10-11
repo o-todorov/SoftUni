@@ -6,4 +6,8 @@
     <RootNamespace>_04._11.ArrayManipulator</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="11 - Copy.cs" />
+  </ItemGroup>
+
 </Project>

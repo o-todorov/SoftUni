@@ -79,37 +79,23 @@ namespace _04._11.ArrayManipulator
                 return;
             }
 
-            int currCount = 0;
-            int[] res = new int[count];
+            int[] result;
+            int[] newArr;
 
             if (even)
             {
-                for (int i = arr.Length - 1; i >= 0 && currCount < count; i--)
-                {
-                    if (isEven(arr[i]))
-                    {
-                        res[currCount] = arr[i];
-                        currCount++;
-                    }
-                }
+                newArr = arr.Where(c => isEven(c)).ToArray();
             }
             else
             {
-                for (int i = arr.Length - 1; i >= 0 && currCount < count; i--)
-                {
-                    if (!isEven(arr[i]))
-                    {
-                        res[currCount] = arr[i];
-                        currCount++;
-                    }
-                }
+                newArr = arr.Where(c => !isEven(c)).ToArray();
             }
 
-            int[] outArr = new int[currCount ];
-            Array.Copy(res, 0, outArr, 0, currCount );
-            Array.Reverse(outArr);
+            count = Math.Min(count, newArr.Length);
+            result = new int[count];
+            Array.Copy(newArr, newArr.Length - count, result, 0, count);
 
-            printArr(outArr);
+            printArr(result);
         }
 
         private static void findFirst(int count, bool even)
@@ -120,72 +106,66 @@ namespace _04._11.ArrayManipulator
                 return;
             }
 
-            int currCount = 0;
-            int[] res = new int[count];
+            int[] result;
+            int[] newArr;
 
             if (even)
             {
-                for (int i = 0; i < arr.Length && currCount < count; i++)
-                {
-                    if (isEven(arr[i]))
-                    {
-                        res[currCount] = arr[i];
-                        currCount++;
-                    }
-                }
+                newArr = arr.Where(c => isEven(c)).ToArray();
             }
             else
             {
-                for (int i = 0; i < arr.Length && currCount < count; i++)
-                {
-                    if (!isEven(arr[i]))
-                    {
-                        res[currCount] = arr[i];
-                        currCount++;
-                    }
-                }
+                newArr = arr.Where(c => !isEven(c)).ToArray();
             }
 
-            int[] outArr = new int[currCount ];
-            Array.Copy(res, 0, outArr, 0, currCount );
+            count = Math.Min(count, newArr.Length);
+            result = new int[count];
+            Array.Copy(newArr, 0, result, 0, count);
 
-            printArr(outArr);
+            printArr(result);
         }
 
         private static void findMin(bool even)
         {
+
+            int idx = -1;
+            int[] newArr;
+
+            if (even)
             {
-                int min = int.MaxValue;
-                int idx = -1;
+                newArr = arr.Where(c => isEven(c)).ToArray();
+            }
+            else
+            {
+                newArr = arr.Where(c => !isEven(c)).ToArray();
+            }
 
-                if (even)
+            if (newArr.Length > 0)
+            {
+                int minValue = newArr.Min();
+
+                for (int i = arr.Length-1; i >= 0; i--)
                 {
-                    for (int i = 0; i < arr.Length; i++)
+                    if (arr[i] == minValue)
                     {
-                        if (isEven(arr[i]) && arr[i] <= min)
-                        {
-                            min = arr[i];
-                            idx = i;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < arr.Length; i++)
-                    {
-                        if (!isEven(arr[i]) && arr[i] <= min)
-                        {
-                            min = arr[i];
-                            idx = i;
-                        }
+                        idx = i;
+                        break;
                     }
                 }
 
+            }
 
-                if (idx == -1) Console.WriteLine("No matches");
-                else Console.WriteLine(idx);
+            if (idx == -1)
+            {
+                Console.WriteLine("No matches");
+            }
+            else
+            {
+                Console.WriteLine(idx);
             }
         }
+
+
 
         private static void findMax(bool even)
         {
