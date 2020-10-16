@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.01.AdvertisementMessage", "06.01.AdvertisementMessage\06.01.AdvertisementMessage.csproj", "{5FB8B748-AD0D-4F67-AA59-C898EA36FEDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.01.AdvertisementMessage", "06.01.AdvertisementMessage\06.01.AdvertisementMessage.csproj", "{5FB8B748-AD0D-4F67-AA59-C898EA36FEDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.02.Articles", "06.02.Articles\06.02.Articles.csproj", "{A265E0B3-EF4B-4A12-A293-C03328875B80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.02.Articles", "06.02.Articles\06.02.Articles.csproj", "{A265E0B3-EF4B-4A12-A293-C03328875B80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.03.Articles2.0", "06.03.Articles2.0\06.03.Articles2.0.csproj", "{D27DC74F-0703-4FF6-BC25-6F41BCCE7631}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.03.Articles2.0", "06.03.Articles2.0\06.03.Articles2.0.csproj", "{D27DC74F-0703-4FF6-BC25-6F41BCCE7631}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.04.Students", "06.04.Students\06.04.Students.csproj", "{222A7ABB-5444-49C3-B2B8-A34ED74EDFD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.04.Students", "06.04.Students\06.04.Students.csproj", "{222A7ABB-5444-49C3-B2B8-A34ED74EDFD0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.05.TeamworkProjects", "06.05.TeamworkProjects\06.05.TeamworkProjects.csproj", "{26C1902D-1ED4-4F9E-B85E-EB93387D47AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.06.VehicleCatalogue", "06.06.VehicleCatalogue\06.06.VehicleCatalogue.csproj", "{D309C965-1076-4A63-B995-4B68E2B70A0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.07.OrderByAge", "06.07.OrderByAge\06.07.OrderByAge.csproj", "{FB0D5A68-4D48-4B93-8E78-F416EA2DE47E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{222A7ABB-5444-49C3-B2B8-A34ED74EDFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{222A7ABB-5444-49C3-B2B8-A34ED74EDFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{222A7ABB-5444-49C3-B2B8-A34ED74EDFD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26C1902D-1ED4-4F9E-B85E-EB93387D47AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26C1902D-1ED4-4F9E-B85E-EB93387D47AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26C1902D-1ED4-4F9E-B85E-EB93387D47AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26C1902D-1ED4-4F9E-B85E-EB93387D47AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D309C965-1076-4A63-B995-4B68E2B70A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D309C965-1076-4A63-B995-4B68E2B70A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D309C965-1076-4A63-B995-4B68E2B70A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D309C965-1076-4A63-B995-4B68E2B70A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB0D5A68-4D48-4B93-8E78-F416EA2DE47E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB0D5A68-4D48-4B93-8E78-F416EA2DE47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB0D5A68-4D48-4B93-8E78-F416EA2DE47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB0D5A68-4D48-4B93-8E78-F416EA2DE47E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
