@@ -2,6 +2,7 @@
 #define RESOURCE_H
 
 #include "ResourceType.h"
+#include <map>
 
 using SoftUni::ResourceType;
 using namespace std;
@@ -18,7 +19,6 @@ namespace SoftUni {
 	private:
 		SoftUni::ResourceType  restype;
 		friend istream& operator>>(istream& in, Resource& r);
-		//friend ostream& operator<<(ostream& in, const Resource& r);
 	};
 	Resource::Resource():id(0), restype(ResourceType::DEMO), link("") {}
 
@@ -30,14 +30,10 @@ namespace SoftUni {
 
 
 	istream& operator>>(istream& in, Resource& r) {
-
+		std::map<string, ResourceType> types = {{"Presentation", PRESENTATION}, {"Demo", DEMO}, {"Video", VIDEO}};
 		string res;
 		in >> r.id >> res >> r.link;
-
-		if ( res == "Presentation" ) r.restype = ResourceType::PRESENTATION;
-		else if ( res == "Demo" )r.restype = ResourceType::DEMO;
-		else if ( res == "Video" )r.restype = ResourceType::VIDEO;
-		else;
+		r.restype = types[res];
 
 		return in;
 	}

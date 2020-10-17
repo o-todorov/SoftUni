@@ -3,8 +3,6 @@
 #define  WORD_H
 #include <string>
 
-
-
 class Word {
 public:
 	Word();
@@ -22,9 +20,5 @@ private:
 	std::string word;
 	mutable int count;
 };
-
-
-
-
 
 #endif // !WORD_H

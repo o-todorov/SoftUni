@@ -11,7 +11,7 @@ void Register::add(const Company& c) {
 }
 
 Company Register::get(int companyId) const {
-	std::string name;
+
 	for ( size_t i = 0; i < this->numAdded; i++ ) {
 		if ( this->companiesArray[i].getId() == companyId ) {
 			return this->companiesArray[i];

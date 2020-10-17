@@ -2,6 +2,8 @@
 #ifndef COMPARATORS_H
 #define COMPARATORS_H
 
+#include "Song.h"
+
 
 template<typename T>
 struct LessThan {
@@ -9,6 +11,14 @@ struct LessThan {
 		return l < r;
 	}
 
+};
+template<>
+struct LessThan <Song>{
+	bool  operator ()(const Song& l, const Song& r) const {
+		if ( l < r || (l.getLengthSeconds() == r.getLengthSeconds() &&
+					   l.getName() < r.getName()) )  return true;
+		else return false;
+	}
 };
 
 template<typename T, typename Comp>

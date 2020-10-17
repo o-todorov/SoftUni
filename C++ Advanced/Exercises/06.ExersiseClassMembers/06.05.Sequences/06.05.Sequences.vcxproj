@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sequence.cpp" />
     <ClCompile Include="SequencesMain.cpp" />
   </ItemGroup>
   <ItemGroup>

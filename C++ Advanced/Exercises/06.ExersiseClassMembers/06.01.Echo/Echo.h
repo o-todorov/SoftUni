@@ -5,7 +5,8 @@
 extern bool echoOn;
 
 #include <iostream>
-#define echo(value) if(echoOn)  std::cout<<(value)<<std::endl;
+void echo(std::string message);
+//#define echo(value) if(echoOn)  std::cout<<(value)<<std::endl;
 
 
 

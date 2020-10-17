@@ -3,73 +3,86 @@
 
 #include <vector>
 
-template<typename T, typename Generator>
-class Sequence {
+
+template <typename T>
+class Sequence_iterator_type {
 public:
-	class Iterator {
-		const std::vector <T>& sequenceElements;
-		int indexInSequence;
+	Sequence_iterator_type() { index = 0; }
+	Sequence_iterator_type(const std::vector<T>& vec, const size_t  index):
+		index(index),
+		vec(vec) {
+	}
 
-		Iterator(const std::vector<T>& sequenceElements, int indexInSequence)
-			: sequenceElements(sequenceElements), indexInSequence(indexInSequence) {}
-	public:
-		static Iterator getBegin(const std::vector<T>& sequenceElements) {
-			return Iterator(sequenceElements, 0);
-		}
-		static Iterator getEnd(const std::vector<T>& sequenceElements) {
-			return Iterator(sequenceElements, -1);
-		}
-		const T& operator*() const {
-			return this->sequenceElements.at(this->indexInSequence);
-		}
+	Sequence_iterator_type getEnd(const std::vector<T>& sequenceElements) {
+		return Sequence_iterator_type(sequenceElements, -1);
+	}
 
-		Iterator& operator++() {
-			this->indexInSequence++;
-			return *this;
-		}
+	bool operator!= (Sequence_iterator_type const& other) const {
+		return this->index != other.index;
+	}
 
-		bool operator!=(const Iterator& other) const {
-			return !(*this == other);
-		}
+	T const& operator* () const {
+		return vec.at(this->index);
+	}
 
-		bool operator==(const Iterator& other) const {
-			bool sequencesMatch = (this->sequenceElements == other.sequenceElements);
-			bool bothPositionsAreEnd = isEndIndex(this->indexInSequence, this->sequenceElements)
-										&& isEndIndex(other.indexInSequence, other.sequenceElements);
-			bool positionsMatch = this->indexInSequence == other.indexInSequence;
-
-			return sequencesMatch && (bothPositionsAreEnd || positionsMatch);
-		}
-
-	private:
-		static int isEndIndex(int index, const std::vector<T>& sequenceElements) {
-			return index == -1 || index == sequenceElements.size();
-		}
-	};
-
+	Sequence_iterator_type const& operator++ () {
+		++index;
+		return *this;
+	}
 
 private:
+	size_t   index;
+	std::vector<T>& vec;
+};
+
+template <typename T>
+using iterator = Sequence_iterator_type< T>;
+
+template < typename T>
+using const_iterator = const Sequence_iterator_type<  T>;
+
+
+template <typename T, typename Generator>
+class Sequence {
 	Generator generator;
 	std::vector<T> generated;
-
+	iterator<T> it;
 public:
+	Sequence():it(iterator<T>()){}
 	void generateNext(int n) {
 		for ( int i = 0; i < n; i++ ) {
 			this->generated.push_back(this->generator());
 		}
 	}
-	Iterator begin() const {
-		return Iterator::getBegin(this->generated);
+
+	iterator<T> begin() {
+		return iterator<T>(this->generated, 0);
 	}
 
-	Iterator end() const {
-		return Iterator::getEnd(this->generated);
+	iterator<T> end() {
+		return it.getEnd(this->generated);
 	}
-
-
 
 };
 
+
+
+
+
+
+//template <typename T>
+
+//template <typename T>
+
+//template <typename T>
+//const_iterator<T> begin(const std::vector<T>& vec) {
+//	return const_iterator< T>(vec, 0);
+//}
+//
+//template <typename T>
+//const_iterator<T> end(const std::vector<T>& vec) {
+//	return const_iterator< T>(vec, vec.size());
+//}
 
 
 
