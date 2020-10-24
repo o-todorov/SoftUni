@@ -8,26 +8,28 @@ namespace _06._02.OldestFamilyMember
     {
         static void Main(string[] args)
         {
-            int     count   = int.Parse(Console.ReadLine());
-            Family  family  = new Family();
+            int count = int.Parse(Console.ReadLine());
+            Family family = new Family();
 
             for (int i = 0; i < count; i++)
             {
                 family.AddMember(new Person(Console.ReadLine().Split()));
             }
 
-            Console.WriteLine(family.GetOldestMember().ToString());
+            family.GetOldestMember().ForEach(p => Console.WriteLine(p.ToString()));
+
+            //Console.WriteLine(family.GetOldestMember().ToString());
         }
 
         class Person
         {
-            public string   Name;
-            public int      Age;
+            public string Name;
+            public int Age;
 
             public Person(string[] person)
             {
-                Name    = person[0];
-                Age     = int.Parse(person[1]);
+                Name = person[0];
+                Age = int.Parse(person[1]);
             }
             public override string ToString()
             {
@@ -48,10 +50,9 @@ namespace _06._02.OldestFamilyMember
                 people.Add(member);
             }
 
-            public Person GetOldestMember()
+            public List<Person> GetOldestMember()
             {
-
-                return people.OrderBy(p => p.Age).Last();
+                return people.OrderBy(p => p.Age).Where(p => p.Age == people.Max(p => p.Age)).ToList();
             }
         }
     }
