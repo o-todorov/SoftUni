@@ -8,12 +8,15 @@ namespace _06._06.VehicleCatalogue
     {
         static void Main(string[] args)
         {
-            List<Vehicle> vehicles = new List<Vehicle>();
-            string newVehicle = string.Empty;
+            List<Vehicle> vehicles  = new List<Vehicle>();
 
-            while ((newVehicle = Console.ReadLine()).ToUpper() != "END")
+            string[] newVehicle = Console.ReadLine().Split();
+
+            while (newVehicle[0].ToUpper() != "END")
             {
                 vehicles.Add(new Vehicle(newVehicle));
+
+                newVehicle = Console.ReadLine().Split();
             }
 
             string model = string.Empty;
@@ -26,19 +29,17 @@ namespace _06._06.VehicleCatalogue
             PrintAverageHPower(ref vehicles, "CAR", "Cars");
             PrintAverageHPower(ref vehicles, "TRUCK", "Trucks");
 
+
         }
 
         private static void PrintAverageHPower(ref List<Vehicle> vehicles, string vType, string heading)
         {
-            var veh = vehicles.Where(v => v.Type.ToUpper() == vType).ToList();
-            double averageHPower = 0.00;
+            var veh = vehicles.Where(v => v.Type.ToUpper() == vType)
+                                .ToList();
 
-            if (veh.Count > 0)
-            {
-                int hPowers = 0;
-                veh.ForEach(v => hPowers += v.Horsepower);
-                averageHPower = (double)hPowers / veh.Count;
-            }
+            int hPowers = 0;
+            veh.ForEach(v => hPowers += v.Horsepower);
+            double averageHPower = veh.Count > 0 ? (double)hPowers / veh.Count : 0.00;
 
             Console.WriteLine($"{heading} have average horsepower of: {averageHPower:f2}.");
         }
@@ -52,25 +53,20 @@ namespace _06._06.VehicleCatalogue
         public string   Color;
         public int      Horsepower;
 
-        public Vehicle(string vehicleSpec)
+        public Vehicle(string[] vehicleSpec)
         {
-            string[] vehicle = vehicleSpec.Split();
-
-            this.Type   = vehicle[0];
-            this.Model  = vehicle[1];
-            this.Color  = vehicle[2];
-            this.Horsepower = int.Parse(vehicle[3]);
+            this.Type   = vehicleSpec[0];
+            this.Model  = vehicleSpec[1];
+            this.Color  = vehicleSpec[2];
+            this.Horsepower = int.Parse(vehicleSpec[3]);
         }
 
         public void Print()
         {
-            var charArr = Type.ToCharArray();
-            charArr[0]  = char.ToUpper(charArr[0]);
-
-            Console.WriteLine($"Type: {new string(charArr)}");
+            Console.WriteLine($"Type: {char.ToUpper(Type[0])}{Type.Substring(1)}");
             Console.WriteLine($"Model: {Model}");
             Console.WriteLine($"Color: {Color }");
-            Console.WriteLine($"Horsepower: {Horsepower }");
+            Console.WriteLine($"Horsepower: {Horsepower}");
         }
     }
 }
