@@ -16,9 +16,7 @@ namespace _06._02.OldestFamilyMember
                 family.AddMember(new Person(Console.ReadLine().Split()));
             }
 
-            family.GetOldestMember().ForEach(p => Console.WriteLine(p.ToString()));
-
-            //Console.WriteLine(family.GetOldestMember().ToString());
+            Console.WriteLine(family.GetOldestMember().ToString());
         }
 
         class Person
@@ -50,9 +48,9 @@ namespace _06._02.OldestFamilyMember
                 people.Add(member);
             }
 
-            public List<Person> GetOldestMember()
+            public Person GetOldestMember()
             {
-                return people.OrderBy(p => p.Age).Where(p => p.Age == people.Max(p => p.Age)).ToList();
+                return people.OrderByDescending(p => p.Age).FirstOrDefault();
             }
         }
     }
