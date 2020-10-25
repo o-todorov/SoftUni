@@ -10,28 +10,28 @@ namespace _06._05.TeamworkProjects
     {
         static void Main(string[] args)
         {
-            int teamsCount = int.Parse(Console.ReadLine());
-            List<Team> teams = new List<Team>();
-            StringBuilder output = new StringBuilder("");
+            int             teamsCount  = int.Parse(Console.ReadLine());
+            List<Team>      teams       = new List<Team>();
+            StringBuilder   output      = new StringBuilder("");
 
             for (int i = 0; i < teamsCount; i++)
             {
                 string[] newTeam = Console.ReadLine().Split('-');
 
-                if (GetTeamIndex(teams, newTeam[1]) != -1)
+                if(teams.FindIndex(t=>t.Name== newTeam[1]) != -1)
                 {
                     output.AppendLine($"Team {newTeam[1]} was already created!");
-                    continue;
                 }
-
-                if (MemberExist(teams, newTeam[0]))
+                else if (MemberExist(teams, newTeam[0]))
                 {
                     output.AppendLine($"{newTeam[0]} cannot create another team!");
-                    continue;
                 }
-
+                else
+                {
                 teams.Add(new Team(newTeam[1], newTeam[0]));
+
                 output.AppendLine($"Team {teams.Last().Name} has been created by {teams.Last().Creater}!");
+                }
             }
 
             string input;
@@ -42,40 +42,38 @@ namespace _06._05.TeamworkProjects
 
                 string  user        = comm[0];
                 string  teamName    = comm[1];
-                int     teamIndex   = GetTeamIndex(teams, teamName);
+                int     teamIndex   = teams.FindIndex(t => t.Name == teamName);
 
                 if (teamIndex == -1)
                 {
                     output.AppendLine($"Team {teamName} does not exist!");
-                    continue;
                 }
-
-                if (MemberExist(teams, user))
+                else if (MemberExist(teams, user))
                 {
                     output.AppendLine($"Member {user} cannot join team {teamName}!");
-                    continue;
                 }
-
-                teams[teamIndex].Add(user);
+                else
+                {
+                    teams[teamIndex].Add(user);
+                }
             }
 
-            foreach (var team in teams.Where(t => t.Count != 0)
-                        .OrderByDescending  (t => t.Count)
-                        .ThenBy             (t => t.Name))
+            foreach (var team in teams  .Where(t => t.Count != 0)
+                                        .OrderByDescending  (t => t.Count)
+                                        .ThenBy             (t => t.Name))
             {
                 output.Append(team.ToString());
             }
 
             output.AppendLine("Teams to disband:");
 
-            foreach (var team in teams.Where(t => t.Count == 0)
-                        .OrderBy (t => t.Name)
-                        .ToList())
-            {
-                output.AppendLine(team.Name);
-            }
+            teams.Where(t => t.Count == 0)
+                .OrderBy (t => t.Name)
+                .ToList()
+                .ForEach(t=>output.AppendLine(t.Name));
+            
 
-            Console.WriteLine(output);
+            Console.WriteLine(output.ToString());
         }
 
         private static bool MemberExist(List<Team> teams, string member)
@@ -91,24 +89,13 @@ namespace _06._05.TeamworkProjects
             return false;
         }
 
-        private static int GetTeamIndex(List<Team> teams, string teamName)
-        {
-            for (int i = 0; i < teams.Count; i++)
-            {
-                if (teams[i].Name == teamName)
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
         class Team
         {
-            public string Name { get; set; }
-            public string Creater { get; set; }
-            public int Count
+            public string   Name { get; set; }
+            public string   Creater { get; set; }
+            List<string>    members;
+
+            public int      Count
             {
                 get
                 {
@@ -116,27 +103,27 @@ namespace _06._05.TeamworkProjects
                 }
             }
 
-            List<string> members;
             public Team(string _newName, string _newCreator)
             {
-                this.Name = _newName;
-                this.Creater = _newCreator;
-                this.members = new List<string>();
+                this.Name       = _newName;
+                this.Creater    = _newCreator;
+                this.members    = new List<string>();
             }
 
             public void Add(string _newMember)
             {
                 members.Add(_newMember);
             }
+
             public bool Contains(string member)
             {
                 return members.Contains(member);
             }
+
             override public  string ToString()
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine(Name);
-                sb.Append("- ").AppendLine(Creater);
+                sb.AppendLine(Name).Append("- ").AppendLine(Creater);
                 members.Sort();
                 members.ForEach(m => sb.Append("-- ").AppendLine(m));
 

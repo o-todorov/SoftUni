@@ -34,12 +34,14 @@ namespace _06._06.VehicleCatalogue
 
         private static void PrintAverageHPower(ref List<Vehicle> vehicles, string vType, string heading)
         {
-            var veh = vehicles.Where(v => v.Type.ToUpper() == vType)
-                                .ToList();
+            var veh = vehicles.Where(v => v.Type.ToUpper() == vType);
 
-            int hPowers = 0;
-            veh.ForEach(v => hPowers += v.Horsepower);
-            double averageHPower = veh.Count > 0 ? (double)hPowers / veh.Count : 0.00;
+            double averageHPower = 0.00;
+
+            if (veh.Count() > 0)
+            {
+                averageHPower = (double)veh.Sum(v => v.Horsepower) / veh.Count();
+            }
 
             Console.WriteLine($"{heading} have average horsepower of: {averageHPower:f2}.");
         }
