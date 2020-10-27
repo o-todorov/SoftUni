@@ -16,19 +16,21 @@ namespace _06._05.TeamworkProjects
 
             for (int i = 0; i < teamsCount; i++)
             {
-                string[] newTeam = Console.ReadLine().Split('-');
+                string[] newTeam    = Console.ReadLine().Split('-');
+                string   teamName   = newTeam[1];
+                string   creator    = newTeam[0];
 
-                if(teams.FindIndex(t=>t.Name== newTeam[1]) != -1)
+                if (teams.FindIndex(t=>t.Name== teamName) != -1)
                 {
-                    output.AppendLine($"Team {newTeam[1]} was already created!");
+                    output.AppendLine($"Team {teamName} was already created!");
                 }
-                else if (MemberExist(teams, newTeam[0]))
+                else if (MemberExist(teams, creator))
                 {
-                    output.AppendLine($"{newTeam[0]} cannot create another team!");
+                    output.AppendLine($"{creator} cannot create another team!");
                 }
                 else
                 {
-                teams.Add(new Team(newTeam[1], newTeam[0]));
+                teams.Add(new Team(teamName, creator));
 
                 output.AppendLine($"Team {teams.Last().Name} has been created by {teams.Last().Creater}!");
                 }
