@@ -13,8 +13,7 @@ namespace _06._07.OrderByAge
 
             while ((input=Console.ReadLine()).ToUpper()!="END")
             {
-                string[] person = input.Split();
-                persons.Add(new Person(person));
+                persons.Add(new Person(input.Split()));
             }
 
             persons.OrderBy(p => p.Age).ToList().ForEach(p => p.Print());
