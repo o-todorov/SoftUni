@@ -30,9 +30,9 @@ namespace _06._05.TeamworkProjects
                 }
                 else
                 {
-                teams.Add(new Team(teamName, creator));
+                    teams.Add(new Team(teamName, creator));
 
-                output.AppendLine($"Team {teams.Last().Name} has been created by {teams.Last().Creater}!");
+                    output.AppendLine($"Team {teams.Last().Name} has been created by {teams.Last().Creater}!");
                 }
             }
 
