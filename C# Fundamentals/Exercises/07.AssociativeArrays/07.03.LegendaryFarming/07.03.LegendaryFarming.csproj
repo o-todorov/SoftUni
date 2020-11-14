@@ -6,4 +6,8 @@
     <RootNamespace>_07._03.LegendaryFarming</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="03 old.cs" />
+  </ItemGroup>
+
 </Project>

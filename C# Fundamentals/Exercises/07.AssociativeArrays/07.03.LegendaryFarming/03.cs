@@ -30,44 +30,41 @@ namespace _07._03.LegendaryFarming
                     string mat = res[i + 1];
                     int quontity = int.Parse(res[i]);
 
-                    switch (mat)
+                    if (materials.ContainsKey(mat))
                     {
-                        case "shards":
-                        case "fragments":
-                        case "motes":
-                            materials[mat] += quontity;
-                            break;
-                        default:
-                            if (junk.ContainsKey(mat))
-                            {
-                                junk[mat] += quontity;
-                            }
-                            else
-                            {
-                                junk[mat] = quontity;
-                            }
-                            continue;
-                    }
+                        materials[mat] += quontity;
 
-                    if (materials[mat] >= 250)
-                    {
-                        Console.WriteLine($"{items[mat]} obtained!");
-                        materials[mat] -= 250;
-
-                        foreach (var x in materials
-                                            .OrderByDescending(m => m.Value)
-                                            .ThenBy(m => m.Key)
-                                            .ToDictionary(m => m.Key, m=>m.Value))
+                        if (materials[mat] >= 250)
                         {
-                            Console.WriteLine($"{x.Key}: {x.Value}");
-                        } 
+                            Console.WriteLine($"{items[mat]} obtained!");
+                            materials[mat] -= 250;
 
-                        foreach (var x in junk)
-                        {
-                            Console.WriteLine($"{x.Key}: {x.Value}");
+                            foreach (var x in materials
+                                                .OrderByDescending(m => m.Value)
+                                                .ThenBy(m => m.Key)
+                                                .ToDictionary(m => m.Key, m => m.Value))
+                            {
+                                Console.WriteLine($"{x.Key}: {x.Value}");
+                            }
+
+                            foreach (var x in junk)
+                            {
+                                Console.WriteLine($"{x.Key}: {x.Value}");
+                            }
+
+                            return;
                         }
-
-                        return;
+                    }
+                    else
+                    {
+                        if (junk.ContainsKey(mat))
+                        {
+                            junk[mat] += quontity;
+                        }
+                        else
+                        {
+                            junk[mat] = quontity;
+                        }
                     }
                 }
 
