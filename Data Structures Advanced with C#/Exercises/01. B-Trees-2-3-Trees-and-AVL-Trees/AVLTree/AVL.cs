@@ -15,7 +15,6 @@
         public void Insert(T item)
         {
             this.Root = this.Insert(this.Root, item);
-            //UpdateHeight(this.Root);
         }
 
         public void EachInOrder(Action<T> action)
