@@ -13,7 +13,7 @@ namespace _02.Problem2
             for (int i = 0; i < count; i++)
             {
                 string message = Console.ReadLine();
-                string rgxValid = @"^([$%])(?<tag>[A-z][a-z]{2,})\1\:[ ]{1}([^\[]*\[(?<num>\d+)\]\|){3}$";
+                string rgxValid = @"^([$%])(?<tag>[A-z][a-z]{2,})\1\:[ ]{1}([^\[]*\[(?<num>\d+)\]\|){3}(\n|$)";
 
                 Match match = Regex.Match(message,rgxValid);
 
