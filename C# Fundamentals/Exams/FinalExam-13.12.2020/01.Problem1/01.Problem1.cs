@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+//Description: https://softwareuniversity-my.sharepoint.com/:w:/g/personal/ivet_atanasova_softuni_bg/ETe53OVI-_9JlrM5IO025XYBUMvbajKWrhMNeMvdcyNxjQ?rtime=kt17HD-f2Eg
+
 namespace _01.Problem1
 {
     class Program

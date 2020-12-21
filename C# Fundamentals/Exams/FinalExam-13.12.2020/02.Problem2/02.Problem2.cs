@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
+// Description: https://softwareuniversity-my.sharepoint.com/:w:/g/personal/ivet_atanasova_softuni_bg/EcOSWHFIWztAqt_4OsHGETYBxUiyoHeB1ozitGUQVjGSCQ?rtime=Be_PziOl2Eg
+
 namespace _02.Problem2
 {
     class Program
@@ -29,9 +31,6 @@ namespace _02.Problem2
                 {
                     Console.WriteLine("Valid message not found!");
                 }
-                int c=5 ,b = 6;
-                int a = c > b ? 1 : 2;
-                c = b;
             }
         }
     }
