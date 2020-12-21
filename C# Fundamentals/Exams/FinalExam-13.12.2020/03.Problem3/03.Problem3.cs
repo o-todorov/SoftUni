@@ -17,9 +17,9 @@ namespace _03.Problem3
                 switch (input[0].ToLower())
                 {
                     case "add":
-                        string user     = input[1];
-                        int sent        = int.Parse(input[2]);
-                        int received    = int.Parse(input[3]);
+                        string  user        = input[1];
+                        int     sent        = int.Parse(input[2]);
+                        int     received    = int.Parse(input[3]);
 
                         if (!users.ContainsKey(user))
                         {
@@ -75,17 +75,17 @@ namespace _03.Problem3
 
     class User
     {
-        public string Name { get; set; }
-        public int Sent { get; set; }
-        public int Received { get; set; }
-        private int limit;
+        public string   Name { get; set; }
+        public int      Sent { get; set; }
+        public int      Received { get; set; }
+        private int     limit;
 
         public User(string name, int sent, int received, int limit)
         {
-            Name = name;
-            Sent = sent;
-            Received = received;
-            this.limit = limit;
+            Name        = name;
+            Sent        = sent;
+            Received    = received;
+            this.limit  = limit;
         }
 
         public bool AddLimitReached()
