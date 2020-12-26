@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -11,15 +10,14 @@ namespace _07._03.MOBA_Challenger
         static void Main(string[] args)
         {
             var         players = new Dictionary<string, Player>();
-            string[]    input;
+            string[]    input = Console.ReadLine().Split(new [] { " -> ", " vs " },StringSplitOptions.RemoveEmptyEntries);
 
-            while ((input = Console.ReadLine().Split())[0].ToLower() != "season")
+            while (input[0].ToLower() != "season end")
             {
                 string player = input[0];
 
-                if (input.Length > 3)
+                if (input.Length > 2)
                 {
-                    input = input.Where(s => s != "->").ToArray();
                     string  position    = input[1];
                     int     skills       = int.Parse(input[2]);
 
@@ -34,18 +32,20 @@ namespace _07._03.MOBA_Challenger
                 }
                 else
                 {
-                    string player1 = input[2];
+                    string player2 = input[1];
 
-                    if (players.ContainsKey(player) && players.ContainsKey(player1))
+                    if (players.ContainsKey(player) && players.ContainsKey(player2))
                     {
                         string looser;
 
-                        if ((looser = Fight(players[player], players[player1])) != null)
+                        if ((looser = Fight(players[player], players[player2])) != null)
                         {
                             players.Remove(looser);
                         }
                     }
                 }
+
+                input = Console.ReadLine().Split(new[] { " -> ", " vs " }, StringSplitOptions.RemoveEmptyEntries);
             }
 
             foreach (var player in players.OrderByDescending(p=>p.Value.TotalSkill)
@@ -55,31 +55,17 @@ namespace _07._03.MOBA_Challenger
             }
         }
 
-        private static string Fight(Player pl, Player pl1)
+        private static string Fight(Player pl1, Player pl2)
         {
-            bool toBattle = false;
-
-            foreach (var position in pl.Pool)
-            {
-                if (pl1.Pool.ContainsKey(position.Key))
-                {
-                    toBattle = true;
-                    break;
-                }
-            }
+            bool toBattle = (pl1.Pool.Keys.Intersect(pl2.Pool.Keys).Count() > 0);
+            string looser = null;
 
             if (toBattle)
             {
-                if (pl.TotalSkill > pl1.TotalSkill)
-                {
-                    return pl1.Name;
-                }else if (pl1.TotalSkill > pl.TotalSkill)
-                {
-                    return pl.Name;
-                }
+                looser = (pl1.TotalSkill > pl2.TotalSkill) ? pl2.Name : (pl2.TotalSkill > pl1.TotalSkill) ? pl1.Name:null;
             }
 
-            return null;
+            return looser;
         }
     }
 
