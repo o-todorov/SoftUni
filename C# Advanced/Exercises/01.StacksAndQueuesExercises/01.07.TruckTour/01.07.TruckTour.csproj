@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>_01._07.TruckTour</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="07 - Copy.TruckTour.cs" />
+  </ItemGroup>
+
+</Project>
