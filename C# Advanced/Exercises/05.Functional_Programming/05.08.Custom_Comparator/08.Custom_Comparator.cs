@@ -8,20 +8,15 @@ namespace _05._08.Custom_Comparator
 
     class Program
     {
-        public delegate int Comparison(int x, int y);
-
         static void Main(string[] args)
         {
             Predicate<int> IsEven   = i => i % 2 == 0;
-            Predicate<int> IsOdd    = i => i % 2 != 0;
 
-            Comparison lessEvenOdd = (a, b) =>
-             {
-                 return (IsEven(a) && IsOdd(b) ||
-                           IsEven(a) && (a < b) ||
-                           IsOdd(a) && IsOdd(b) && (a < b)
-                         ) ? -1 : 1;
-             };
+            Func<int, int, int> lessEvenOdd = (a, b) =>
+               {
+                   return (IsEven(a) && !IsEven(b) || IsEven(a) == IsEven(b) && (a < b))
+                            ? -1 : 1;
+               };
 
             var nums = Console.ReadLine()
                     .Split(" ")

@@ -9,16 +9,15 @@ namespace _05._06.Reverse_and_Exclude
     {
         static void Main(string[] args)
         {
-            Func<int, int, bool> indivisibleByN = (x, n) => x % n != 0;
-
             var nums = Console.ReadLine()
                     .Split(" ")
                     .Select(int.Parse);
 
             int divider = int.Parse(Console.ReadLine());
+            Func<int, bool> indivisibleByN = x => x % divider != 0;
+            nums= nums.Where(indivisibleByN).Reverse();
 
-            Console.WriteLine(string.Join(" ", nums.Where(x => indivisibleByN(x, divider)).Reverse()));
-
+            Console.WriteLine(string.Join(" ", nums));
         }
     }
 }
