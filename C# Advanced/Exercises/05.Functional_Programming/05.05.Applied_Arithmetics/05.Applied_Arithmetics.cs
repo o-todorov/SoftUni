@@ -1,23 +1,29 @@
-﻿using System;
+﻿/* Write a program that executes some mathematical operations on a given collection. On the first line you are given a list of numbers. On the next lines you are passed different commands that you need to apply to all the numbers in the list:
+    • "add"->add 1 to each number
+    • "multiply" -> multiply each number by 2
+    • "subtract" -> subtract 1 from each number
+    • "print" -> print the collection
+    • "end" -> ends the input 
+Use functions.*/
+    
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace _05._05.Applied_Arithmetics
 {
     class Program
     {
-        public delegate int Operation(int x);
-
         static void Main(string[] args)
         {
-            Operation addOne        = x => x + 1;
-            Operation mupliplyByTwo = x => x * 2;
-            Operation subtractOne   = x => x - 1;
+            var ops = new Dictionary<string, Func<int, int>>()
+                    {
+                        {"add",         x => x + 1},
+                        {"multiply",    x => x * 2 },
+                        {"subtract",    x => x - 1}
+                    };
 
-            Func<int[], Operation, int[]> calculate = (ar, operation) =>
-                            ar.Select(x => operation(x)).ToArray();
-
-            Action<int[]> print = ar =>
-                             Console.WriteLine(string.Join(" ", ar));
+            Action<int[]> print = ar => Console.WriteLine(string.Join(" ", ar));
 
             int[] arr = Console.ReadLine()
                        .Split(" ")
@@ -28,23 +34,15 @@ namespace _05._05.Applied_Arithmetics
 
             while ((command = Console.ReadLine().ToLower()) != "end")
             {
-                switch (command)
+
+                if (ops.ContainsKey(command))
                 {
-                    case "add":
-                        arr = calculate(arr, addOne);
-                        break;
-                    case "multiply":
-                        arr = calculate(arr, mupliplyByTwo);
-                        break;
-                    case "subtract":
-                        arr = calculate(arr, subtractOne);
-                        break;
-                    case "print":
-                        print(arr);
-                        break;
-                    default:
-                        Console.WriteLine("Invalid Command");
-                        break;
+                    arr = arr.Select(ops[command]).ToArray();
+
+                }
+                else if (command == "print")
+                {
+                    print(arr);
                 }
             }
         }
