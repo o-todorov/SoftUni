@@ -10,13 +10,11 @@ namespace _02._07.Knight_Game
         public static int[,] chess;     // Matrix
         public static int parent;       // Helper for initialization of the knights
         public static int size;         // Matrix size
-        public static int maxDeleted;
         static void Main(string[] args)
         {
-            size    = int.Parse(Console.ReadLine());
-            chess   = new int[size, size];
+            size = int.Parse(Console.ReadLine());
+            chess = new int[size, size];
             int counter = 1;                    // Counter for knights ID's for access to them
-            maxDeleted  = size * size;
 
             for (int i = 0; i < size; i++)
             {
@@ -30,12 +28,12 @@ namespace _02._07.Knight_Game
                     }
                     else
                     {
-                        chess[i, j] = counter;  // If knight -> put his ID in the matrix
+                        chess[i, j] = counter;  // If knight - put his ID
                         knights.Add(counter++, new List<int>()); // Add the knight to the dictionary
-                                                // Intitialize new List for his hits ( ID's of the other knights)
-                        if (i > 0)              // Start check for hits after 0-row
-                        {                       // Do only 4 checks for each knight which are on top of it
-                                                // Next 4 checks are to be done when next knight is in order
+                                                                 // Intitialize new List for his hits ( ID's of the other knights)
+                        if (i > 0)  // Start check for hits after 0-row
+                        {           // Do only 4 checks for each knight which are on top of it
+                                    // Next 4 checks are to be done when next knight is in order
                             parent = chess[i, j]; // Parent is the current knight
                             CheckKnight(i, j);
                         }
@@ -44,58 +42,31 @@ namespace _02._07.Knight_Game
             }
 
             knights = knights.Where(p => p.Value.Count > 0) // Clear zero - hit knights
-                        .OrderByDescending(p => p.Value.Count)
                         .ToDictionary(p => p.Key, p => p.Value);
             int deleted = 0;
 
-            FindDeleted(deleted,1);
-
-            Console.WriteLine(maxDeleted);
-
-        }
-
-        private static void FindDeleted(int deleted, int level)
-        {
-            if (deleted >= maxDeleted)
+            while (knights.Count() > 0) // One delete per cycle
             {
-                return;
-            }
-            else if (!knights.Values.Any(v => v.Count > 0))
-            {
-                if (deleted <= maxDeleted)
+                int maxHits = knights.Max(x => x.Value.Count);
+                var curr = knights.First(k => k.Value.Count == maxHits); // Top knigh with max hits
+
+                List<int> hits = curr.Value; // List of top knight hits
+
+                foreach (var hit in hits)
                 {
-                    maxDeleted = deleted;
-                    return;
-                }
-            }
-            //Console.WriteLine($"level-{level}: {string.Join(",",knights.Where(k=>k.Value.Count>0).ToDictionary(k=>k.Key,k=>k.Value).Keys)}");
+                    knights[hit].Remove(curr.Key);      // Remove current from the list of each his hit
 
-            foreach (var k in knights)
-            {
-                if (k.Value.Count == 0) continue;
-
-                var arr = k.Value.ToArray();
-
-                foreach (var hit in arr)
-                {
-                    knights[hit].Remove(k.Key);
+                    if (knights[hit].Count == 0)    // Remove the knight if become 0-hit
+                    {
+                        knights.Remove(hit);
+                    }
                 }
 
-                knights[k.Key].Clear();
-                deleted++;
-
-                FindDeleted(deleted,level+1);
-
-                knights[k.Key].AddRange(arr);
-
-                foreach (var hit in arr)
-                {
-                    knights[hit].Add(k.Key);
-                }
-
-                deleted--;
-
+                knights.Remove(curr.Key);               // Remove top knight from the dictionary
+                deleted++;                          // Increase counter for deleted knights
             }
+
+            Console.WriteLine(deleted);
 
         }
 
