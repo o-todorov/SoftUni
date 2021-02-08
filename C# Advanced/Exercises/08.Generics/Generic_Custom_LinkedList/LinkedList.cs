@@ -1,0 +1,238 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace GenericDoublyLinkedList
+{
+    class LinkedList<T> : IEnumerable
+    {
+        private int count = 0;
+        private Node<T> Head;
+        private Node<T> Tail;
+        public LinkedList() 
+        {
+            Count = 0;
+        }
+        public LinkedList(IEnumerable array) :this()
+        {
+            foreach (T item in array)
+            {
+                this.AddLast(item);
+            }
+        }
+        public int Count { get => count; private set => count = value; }
+        public T First 
+        {
+            get 
+            {
+                CheckListIsEmpty();
+                return Head.Value;
+            } 
+        }
+        public T Last
+        {
+            get
+            {
+                CheckListIsEmpty();
+                return Tail.Value;
+            }
+        }
+        private void CheckListIsEmpty()
+        {
+            if (Count==0)
+            {
+                throw new InvalidOperationException("List is empty!");
+            }
+        }
+        public void AddFirst(T value)
+        {
+            Node<T> node = new Node<T>(value);
+            Count++;
+
+            if (Head == null)
+            {
+                Head = node;
+                Tail = node;
+                return;
+            }
+
+            node.Next = Head;
+            Head.Previous = node;
+            Head = node;
+        }
+        public void AddLast(T value)
+        {
+            var node = new Node<T>(value);
+            Count++;
+
+            if (Tail == null)
+            {
+                Head = node;
+                Tail = node;
+                return;
+            }
+
+            node.Previous = Tail;
+            Tail.Next = node;
+            Tail = node;
+        }
+        public T RemoveFirst()
+        {
+            CheckListIsEmpty();
+
+            T ret = Head.Value;
+            Head = Head.Next;
+            Count--;
+
+            if (Count == 0)
+            {
+                Tail = null;
+            }
+            else
+            {
+                Head.Previous = null;
+            }
+
+            return ret;
+        }
+        public T RemoveLast()
+        {
+            CheckListIsEmpty();
+
+            T ret = Tail.Value;
+            Tail = Tail.Previous;
+            Count--;
+
+            if (Count == 0)
+            {
+                Head = null;
+            }
+            else
+            {
+                Tail.Next = null;
+            }
+
+            return ret;
+        }
+        public void ForEach(Action<T> doAction)
+        {
+            var curr = Head;
+
+            while (curr != null)
+            {
+                doAction(curr.Value);
+                curr = curr.Next;
+            }
+        }
+        public T[] ToArray()
+        {
+            T[] ret = new T[Count];
+            int idx = 0;
+            ForEach(i => ret[idx++] = i);
+
+            return ret;
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+        private IEnumerator<T> GetEnumerator()
+        {
+            var curr = Head;
+
+            while (curr != null)
+            {
+                yield return curr.Value;
+                curr = curr.Next;
+            }
+        }
+        public void Reverse()
+        {
+            if (Count < 2) return;
+
+            var left    = Head;
+            var right   = Tail;
+
+            for (int i = 0; i < count / 2; i++)
+            {
+                var temp    = left.Value;
+                left.Value  = right.Value;
+                right.Value = temp;
+                left        = left.Next;
+                right       = right.Previous;
+            }
+        }
+        public bool Contains(T value)
+        {
+            return FindFirstOrDefault(value) != null ? true : false;
+        }
+        public Node<T> FindFirstOrDefault(T value)
+        {
+            var curr = Head;
+
+            while (curr != null)
+            {
+                if (curr.Value.Equals(value)) return curr;
+                curr = curr.Next;
+            }
+
+            return null;
+        }
+        public LinkedList<T> Where(Predicate<T> filter)
+        {
+            var newList = new LinkedList<T>();
+
+            var curr = Head;
+
+            while (curr != null)
+            {
+                if (filter(curr.Value))
+                {
+                    newList.AddLast(curr.Value);
+                }
+
+                curr = curr.Next;
+            }
+
+            return newList;
+        }
+        public bool RemoveFirstFound(T value)
+        {
+            var found = FindFirstOrDefault(value);
+
+            if (found == null) return false;
+
+            if (found.Previous == null)
+            {
+                RemoveFirst();
+            }
+            else if (found.Next == null)
+            {
+                RemoveLast();
+            }
+            else
+            {
+                found.Previous.Next = found.Next;
+                found.Next.Previous = found.Previous;
+                Count--;
+            }
+
+            return true;
+        }
+        public void RemoveAll(T value)
+        {
+            while (RemoveFirstFound(value)) ;
+        }
+        public void Clear()
+        {
+            Head    = null;
+            Tail    = null;
+            Count   = 0;
+        }
+        public override string ToString()
+        {
+            return $"{string.Join(" ", ToArray().Select(n => n.ToString()))} : Count - {Count}";
+        }
+    }
+}
