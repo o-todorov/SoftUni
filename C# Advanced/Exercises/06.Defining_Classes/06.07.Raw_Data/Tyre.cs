@@ -3,15 +3,16 @@ namespace RawData
 {
     class Tyre
     {
-        public Tyre()
-        {
-            Pressure = 0.00;
-            Age = 0;
-        }
+        public Tyre() { }
         public Tyre(double pressure, int age)
         {
-            Pressure = pressure;
-            Age = age;
+            Pressure    = pressure;
+            Age         = age;
+        }
+        public Tyre(string pressure, string age)
+        {
+            Pressure    = double.Parse(pressure);
+            Age         = int.Parse(age);
         }
 
         public double Pressure { get; set; }

@@ -14,32 +14,28 @@ namespace RawData
             for (int i = 0; i < count; i++)
             {
                 string[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                string carModel = input[0];
-                var engine = new Engine(input[1], input[2]);
-                CargoType cargoT = GetCargoType(input[4]);
-                var cargo = new Cargo(input[3], cargoT);
 
-                int idx = 5;
-                Tyre[] tyres = new Tyre[4];
+                int idx = 0;
+                var car = new Car(input[idx++],
+                                  new Engine(input[idx++], input[idx++]),
+                                  new Cargo(input[idx++], input[idx++]),
+                                  new Tyre[4]);
 
                 for (int j = 0; j < 4; j++)
                 {
-                    tyres[j] = new Tyre();
-                    tyres[j].Pressure   = double.Parse(input[idx++]);
-                    tyres[j].Age        = int.Parse(input[idx++]);
+                    car.Tyres[j] = new Tyre(input[idx++],input[idx++]);
                 }
 
-                cars.Add(new Car(carModel, engine, cargo, tyres));
+                cars.Add(car);
             }
 
-            CargoType cargoType = GetCargoType(Console.ReadLine());
+            var cargo = Cargo.GetCargoType(Console.ReadLine());
 
-            Func<Car, bool> filter = GetFilter(cargoType);
+            Func<Car, bool> filter = GetFilter(cargo);
 
-            var result = cars.Where(filter)
-                             .Select(c => c.Model);
+            var result = cars.Where(filter).Select(c => c.Model);
 
-            Console.WriteLine(string.Join(Environment.NewLine,result));
+            Console.WriteLine(string.Join(Environment.NewLine, result));
         }
 
         private static Func<Car, bool> GetFilter(CargoType cargoType)
@@ -58,13 +54,6 @@ namespace RawData
             }
 
             return result;
-        }
-
-        private static CargoType GetCargoType(string cargoType)
-        {
-            return cargoType == "fragile" ? CargoType.Fragile : 
-                   cargoType == "flamable" ? CargoType.Flamable :
-                   CargoType.Unknown;
         }
     }
 }

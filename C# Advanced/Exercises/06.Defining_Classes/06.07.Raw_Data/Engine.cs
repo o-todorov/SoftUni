@@ -3,11 +3,7 @@ namespace RawData
 {
     class Engine
     {
-        public Engine()
-        {
-            Speed = 0;
-            Power = 0;
-        }
+        public Engine() { }
         public Engine(int speed, int power)
         {
             Speed = speed;
