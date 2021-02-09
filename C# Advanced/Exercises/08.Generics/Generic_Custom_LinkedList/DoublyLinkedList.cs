@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GenericDoublyLinkedList
+namespace CustomDoublyLinkedList
 {
-    class LinkedList<T> : IEnumerable
+    public class DoublyLinkedList<T> : IEnumerable
     {
         private int count = 0;
-        private Node<T> Head;
-        private Node<T> Tail;
-        public LinkedList() 
+        private ListNode<T> Head;
+        private ListNode<T> Tail;
+        public DoublyLinkedList() 
         {
             Count = 0;
         }
-        public LinkedList(IEnumerable array) :this()
+        public DoublyLinkedList(IEnumerable array) :this()
         {
             foreach (T item in array)
             {
@@ -47,7 +47,7 @@ namespace GenericDoublyLinkedList
         }
         public void AddFirst(T value)
         {
-            Node<T> node = new Node<T>(value);
+            ListNode<T> node = new ListNode<T>(value);
             Count++;
 
             if (Head == null)
@@ -63,7 +63,7 @@ namespace GenericDoublyLinkedList
         }
         public void AddLast(T value)
         {
-            var node = new Node<T>(value);
+            var node = new ListNode<T>(value);
             Count++;
 
             if (Tail == null)
@@ -167,7 +167,7 @@ namespace GenericDoublyLinkedList
         {
             return FindFirstOrDefault(value) != null ? true : false;
         }
-        public Node<T> FindFirstOrDefault(T value)
+        private ListNode<T> FindFirstOrDefault(T value)
         {
             var curr = Head;
 
@@ -179,9 +179,9 @@ namespace GenericDoublyLinkedList
 
             return null;
         }
-        public LinkedList<T> Where(Predicate<T> filter)
+        public DoublyLinkedList<T> Where(Predicate<T> filter)
         {
-            var newList = new LinkedList<T>();
+            var newList = new DoublyLinkedList<T>();
 
             var curr = Head;
 

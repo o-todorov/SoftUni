@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 
-namespace GenericDoublyLinkedList
+namespace CustomDoublyLinkedList
 {
     class StartUp
     {
         static void Main(string[] args)
         {
 
-            LinkedList<int> list = new LinkedList<int>();
+            DoublyLinkedList<int> list = new DoublyLinkedList<int>();
 
             for (int i = 0; i < 9; i++)
             {
@@ -29,8 +29,6 @@ namespace GenericDoublyLinkedList
 
             Console.WriteLine("\nValues > 3:");
             Console.WriteLine(list.Where(i => i > 3));
-
-            Console.WriteLine($"\nFound Node {list.FindFirstOrDefault(4).Value}");
 
             Console.WriteLine((list.RemoveFirstFound(5)) ? "Removed 5" : "Not removed 5");
             Console.WriteLine((list.RemoveFirstFound(5)) ? "Removed 5" : "Not removed 5");
@@ -59,18 +57,18 @@ namespace GenericDoublyLinkedList
             Console.WriteLine("\nPrint as Array:");
             Console.WriteLine(string.Join("; ", list.ToArray()));
 
-            var t = list.FindFirstOrDefault(2);
+            //var t = list.FindFirstOrDefault(2);
 
-            if (t != null)
-            {
-                if (t.Previous != null)
-                    Console.WriteLine($"\nPrevious of first 2 is: {t.Previous}");
-                else Console.WriteLine($"\nPrevious of first 2 is: null");
+            //if (t != null)
+            //{
+            //    if (t.Previous != null)
+            //        Console.WriteLine($"\nPrevious of first 2 is: {t.Previous}");
+            //    else Console.WriteLine($"\nPrevious of first 2 is: null");
 
-                if (t.Next != null)
-                    Console.WriteLine($"\nNext of first 2 is: {t.Next}");
-                else Console.WriteLine($"\nNext of first 2 is: null");
-            }
+            //    if (t.Next != null)
+            //        Console.WriteLine($"\nNext of first 2 is: {t.Next}");
+            //    else Console.WriteLine($"\nNext of first 2 is: null");
+            //}
 
             Console.WriteLine("\nDelete first 4 and 3");
             list.RemoveFirstFound(4);
@@ -82,18 +80,18 @@ namespace GenericDoublyLinkedList
             Console.WriteLine(list);
 
             Console.WriteLine("\nAfter recreate list by passing Enumerable.Range:");
-            list = new LinkedList<int>(Enumerable.Range(1, 15));
+            list = new DoublyLinkedList<int>(Enumerable.Range(1, 15));
             Console.WriteLine(list);
 
             Console.WriteLine("\nNew LinkedList <string>:");
-            var listStr = new LinkedList<string>(new string[] { "one", "two", "three", "four", "five", });
+            var listStr = new DoublyLinkedList<string>(new string[] { "one", "two", "three", "four", "five", });
             Console.WriteLine(listStr);
 
             Console.WriteLine("\nPrint as Array:");
             Console.WriteLine(string.Join("; ", listStr.ToArray()));
 
             Console.WriteLine("\nNew LinkedList <double>:");
-            var listD = new LinkedList<double>(new double[] { 5.63, 6.89, 1.33 });
+            var listD = new DoublyLinkedList<double>(new double[] { 5.63, 6.89, 1.33 });
             Console.WriteLine(listD);
 
             Console.WriteLine("\nPrint as Array:");
