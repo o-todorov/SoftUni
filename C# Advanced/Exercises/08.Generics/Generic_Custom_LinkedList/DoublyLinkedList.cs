@@ -38,13 +38,6 @@ namespace CustomDoublyLinkedList
                 return Tail.Value;
             }
         }
-        private void CheckListIsEmpty()
-        {
-            if (Count==0)
-            {
-                throw new InvalidOperationException("List is empty!");
-            }
-        }
         public void AddFirst(T value)
         {
             ListNode<T> node = new ListNode<T>(value);
@@ -137,16 +130,6 @@ namespace CustomDoublyLinkedList
         {
             return this.GetEnumerator();
         }
-        private IEnumerator<T> GetEnumerator()
-        {
-            var curr = Head;
-
-            while (curr != null)
-            {
-                yield return curr.Value;
-                curr = curr.Next;
-            }
-        }
         public void Reverse()
         {
             if (Count < 2) return;
@@ -166,18 +149,6 @@ namespace CustomDoublyLinkedList
         public bool Contains(T value)
         {
             return FindFirstOrDefault(value) != null ? true : false;
-        }
-        private ListNode<T> FindFirstOrDefault(T value)
-        {
-            var curr = Head;
-
-            while (curr != null)
-            {
-                if (curr.Value.Equals(value)) return curr;
-                curr = curr.Next;
-            }
-
-            return null;
         }
         public DoublyLinkedList<T> Where(Predicate<T> filter)
         {
@@ -233,6 +204,35 @@ namespace CustomDoublyLinkedList
         public override string ToString()
         {
             return $"{string.Join(" ", ToArray().Select(n => n.ToString()))} : Count - {Count}";
+        }
+        private void CheckListIsEmpty()
+        {
+            if (Count == 0)
+            {
+                throw new InvalidOperationException("List is empty!");
+            }
+        }
+        private IEnumerator<T> GetEnumerator()
+        {
+            var curr = Head;
+
+            while (curr != null)
+            {
+                yield return curr.Value;
+                curr = curr.Next;
+            }
+        }
+        private ListNode<T> FindFirstOrDefault(T value)
+        {
+            var curr = Head;
+
+            while (curr != null)
+            {
+                if (curr.Value.Equals(value)) return curr;
+                curr = curr.Next;
+            }
+
+            return null;
         }
     }
 }

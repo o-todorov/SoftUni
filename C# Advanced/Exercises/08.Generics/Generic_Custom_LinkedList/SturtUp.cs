@@ -57,18 +57,12 @@ namespace CustomDoublyLinkedList
             Console.WriteLine("\nPrint as Array:");
             Console.WriteLine(string.Join("; ", list.ToArray()));
 
-            //var t = list.FindFirstOrDefault(2);
-
-            //if (t != null)
-            //{
-            //    if (t.Previous != null)
-            //        Console.WriteLine($"\nPrevious of first 2 is: {t.Previous}");
-            //    else Console.WriteLine($"\nPrevious of first 2 is: null");
-
-            //    if (t.Next != null)
-            //        Console.WriteLine($"\nNext of first 2 is: {t.Next}");
-            //    else Console.WriteLine($"\nNext of first 2 is: null");
-            //}
+            Console.WriteLine("\nPrint in standart Foreach:");
+            foreach (var item in list)
+            {
+                Console.Write(item.ToString() + " ");
+            }
+            Console.WriteLine();
 
             Console.WriteLine("\nDelete first 4 and 3");
             list.RemoveFirstFound(4);
