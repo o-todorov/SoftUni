@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2020_06_28_Bombs", "2020_06
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2020_06_28_Snake", "2020_06_28_Snake\2020_06_28_Snake.csproj", "{786CD9B0-8340-417C-8765-DFF89E8C9096}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking", "2020_06_28_Parking\Parking\Parking.csproj", "{5ECD824D-DA83-4560-8C1C-EE2784C41858}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2020_06_28_Parking", "2020_06_28_Parking\Parking\2020_06_28_Parking.csproj", "{5ECD824D-DA83-4560-8C1C-EE2784C41858}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2018_04_24_Parking_Feud", "2018_04_24_Parking_Feud\2018_04_24_Parking_Feud.csproj", "{66F86201-2A01-4533-A535-7CF83DC2B605}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2018_04_24_Parking_Feud", "2018_04_24_Parking_Feud\2018_04_24_Parking_Feud.csproj", "{66F86201-2A01-4533-A535-7CF83DC2B605}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2018_04_24_Movie_Time", "2018_04_24_Movie_Time\2018_04_24_Movie_Time.csproj", "{9C1F4B4E-19AF-4318-845D-F7728E257ECC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{66F86201-2A01-4533-A535-7CF83DC2B605}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66F86201-2A01-4533-A535-7CF83DC2B605}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66F86201-2A01-4533-A535-7CF83DC2B605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1F4B4E-19AF-4318-845D-F7728E257ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1F4B4E-19AF-4318-845D-F7728E257ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1F4B4E-19AF-4318-845D-F7728E257ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1F4B4E-19AF-4318-845D-F7728E257ECC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
