@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2018_04_24_Parking_Feud", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2018_04_24_Movie_Time", "2018_04_24_Movie_Time\2018_04_24_Movie_Time.csproj", "{9C1F4B4E-19AF-4318-845D-F7728E257ECC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2018_04_24_Ticket_Trouble", "2018_04_24_Ticket_Trouble\2018_04_24_Ticket_Trouble.csproj", "{FFE03DCD-0AE4-400B-B3A6-8C977771886F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9C1F4B4E-19AF-4318-845D-F7728E257ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C1F4B4E-19AF-4318-845D-F7728E257ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C1F4B4E-19AF-4318-845D-F7728E257ECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE03DCD-0AE4-400B-B3A6-8C977771886F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE03DCD-0AE4-400B-B3A6-8C977771886F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE03DCD-0AE4-400B-B3A6-8C977771886F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE03DCD-0AE4-400B-B3A6-8C977771886F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
