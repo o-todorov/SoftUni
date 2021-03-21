@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>while with array reading</Title>
+			<Author>Oleg Todorov extention on Microsoft Corporation snippet</Author>
+			<Shortcut>whilearr</Shortcut>
+			<Description>Code snippet for while loop with string array reading from console</Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>input</ID>
+					<ToolTip>Array name</ToolTip>
+					<Default>input</Default>
+				</Literal>
+				<Literal>
+					<ID>compare</ID>
+					<ToolTip>String to compare with</ToolTip>
+					<Default>end</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[string[] $input$;
+			
+			while (($input$ = Console.ReadLine().Split())[0].ToLower() != "$compare$")
+	{
+	        $selected$ $end$
+	}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>forWithParse</Title>
+			<Author>Oleg Todorov</Author>
+			<Shortcut>forparsecounter</Shortcut>
+			<Description>Code snippet for 'for' loop with parse int counter from Console</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>index</ID>
+					<Default>i</Default>
+					<ToolTip>Index</ToolTip>
+				</Literal>
+				<Literal>
+					<ID>max</ID>
+					<Default>count</Default>
+					<ToolTip>Max length</ToolTip>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[int $max$ = int.Parse(Console.ReadLine());
+			
+			for (int $index$ = 0; $index$ < $max$; $index$++)
+			{
+			$selected$ $end$
+			}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
