@@ -14,16 +14,15 @@ namespace ValidationAttributes.Core
 
             foreach (var prop in properties)
             {
-                var value       = prop.GetValue(person);
-                var attributes  = prop.GetCustomAttributes()
-                                 .Where(a => a.GetType().BaseType == typeof(MyValidationAttribute));
+                var value   = prop.GetValue(person);
+                var isvalid = prop.GetCustomAttributes()
+                                 .Where(a => a.GetType().BaseType == typeof(MyValidationAttribute))
+                                 .Cast<MyValidationAttribute>()
+                                 .All(a=>a.IsValid(value));
 
-                foreach (MyValidationAttribute attr in attributes)
+                if (!isvalid)
                 {
-                    if (!attr.IsValid(value))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
 
