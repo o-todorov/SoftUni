@@ -4,10 +4,18 @@ namespace Bakery.Utilities
 {
     public static class Validators
     {
-        public static T ValidateIsGeaterThanZero<T>(T value, string message)
-        where T : IComparable
+        public static int ValidateIsGeaterThanZero(int value, string message)
         {
-            if (value.CompareTo(0) <= 0)
+            if (value <= 0)
+            {
+                throw new ArgumentException(message);
+            }
+
+            return value;
+        }
+        public static decimal ValidateIsGeaterThanZero(decimal value, string message)
+        {
+            if (value <= 0m)
             {
                 throw new ArgumentException(message);
             }

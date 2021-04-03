@@ -14,15 +14,15 @@ namespace Bakery.Models.Tables
     {
         private int capacity;
         private int numberOfPeople;
-        private List<IBakedFood> FoodOrders;
-        private List<IDrink> DrinkOrders;
+        private List<IBakedFood> foodOrders;
+        private List<IDrink> drinkOrders;
         protected Table(int tableNumber, int capacity, decimal pricePerPerson)
         {
             TableNumber     = tableNumber;
             Capacity        = capacity;
             PricePerPerson  = pricePerPerson;
-            FoodOrders      = new List<IBakedFood>();
-            DrinkOrders     = new List<IDrink>();
+            foodOrders      = new List<IBakedFood>();
+            drinkOrders     = new List<IDrink>();
         }
         public int TableNumber { get; private set; }
 
@@ -56,16 +56,16 @@ namespace Bakery.Models.Tables
 
         public void Clear()
         {
-            FoodOrders.Clear();
-            DrinkOrders.Clear();
+            foodOrders.Clear();
+            drinkOrders.Clear();
             IsReserved = false;
-            NumberOfPeople = 0;
+            numberOfPeople = 0;
         }
 
         public decimal GetBill()
         {
-            decimal foodBill  = FoodOrders.Sum(f => f.Price);
-            decimal drinkBill = DrinkOrders.Sum(d => d.Price);
+            decimal foodBill  = foodOrders.Sum(f => f.Price);
+            decimal drinkBill = drinkOrders.Sum(d => d.Price);
 
             return foodBill + drinkBill;
         }
@@ -83,12 +83,12 @@ namespace Bakery.Models.Tables
 
         public void OrderDrink(IDrink drink)
         {
-            DrinkOrders.Add(drink);
+            drinkOrders.Add(drink);
         }
 
         public void OrderFood(IBakedFood food)
         {
-            FoodOrders.Add(food);
+            foodOrders.Add(food);
         }
 
         public void Reserve(int numberOfPeople)
