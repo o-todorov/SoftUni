@@ -1,6 +1,7 @@
 ﻿using AquaShop.Models.Aquariums.Contracts;
 using AquaShop.Models.Decorations.Contracts;
 using AquaShop.Models.Fish.Contracts;
+using AquaShop.Utilities;
 using AquaShop.Utilities.Messages;
 using System;
 using System.Collections.Generic;
@@ -24,16 +25,7 @@ namespace AquaShop.Models.Aquariums
         {
             get => name;
 
-            private set
-            {
-                if ((string.IsNullOrWhiteSpace(value)))
-                {
-                    var message = ExceptionMessages.InvalidAquariumName;
-                    throw new ArgumentException(message);
-                }
-
-                name = value;
-            }
+            private set => name = Validator.StringNotNullOrEmpty(value, ExceptionMessages.InvalidAquariumName);
         }
 
         public int Capacity { get; }

@@ -1,8 +1,7 @@
 ﻿using AquaShop.Core.Contracts;
 using AquaShop.Models;
-using AquaShop.Models.Aquariums;
 using AquaShop.Models.Aquariums.Contracts;
-using AquaShop.Models.Fish;
+using AquaShop.Models.Decorations.Contracts;
 using AquaShop.Models.Fish.Contracts;
 using AquaShop.Repositories;
 using AquaShop.Utilities.Messages;
@@ -25,15 +24,18 @@ namespace AquaShop.Core
 
         public string AddAquarium(string aquariumType, string aquariumName)
         {
-            aquariums.Add(aquariumName, Factory.CreateAquarium(aquariumType, aquariumName));
+            aquariums.Add(aquariumName, Factory.CreateObject<IAquarium>(
+                                                aquariumType, 
+                                                ExceptionMessages.InvalidAquariumType, 
+                                                aquariumName
+                                                ));
 
             return string.Format(OutputMessages.SuccessfullyAdded,aquariumType);
         }
 
-
         public string AddDecoration(string decorationType)
         {
-            decorations.Add(Factory.CreateDecoration(decorationType));
+            decorations.Add(Factory.CreateObject<IDecoration>(decorationType, ExceptionMessages.InvalidDecorationType));
 
             return string.Format(OutputMessages.SuccessfullyAdded, decorationType);
         }
@@ -42,7 +44,7 @@ namespace AquaShop.Core
         {
             var aquarium = aquariums[aquariumName];
 
-            IFish fish = Factory.CreateFish(fishType, fishName, fishSpecies, price);
+            IFish fish = Factory.CreateObject<IFish>(fishType, ExceptionMessages.InvalidFishType, fishName, fishSpecies, price);
 
             if (fishType.Replace("Fish", "") == aquarium.GetType().Name.Replace("Aquarium", ""))
             {
