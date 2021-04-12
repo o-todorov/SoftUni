@@ -1,12 +1,11 @@
 ﻿using EasterRaces.Repositories.Contracts;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 
 namespace EasterRaces.Repositories
 {
     public abstract class Repository<T> : IRepository<T>
     {
-        protected ICollection<T> collection;
+        protected readonly List<T> collection;
 
         public Repository()
         {
@@ -20,8 +19,7 @@ namespace EasterRaces.Repositories
 
         public IReadOnlyCollection<T> GetAll()
         {
-            var list = collection.ToImmutableList();
-            return list;
+            return collection;
         }
 
         public abstract T GetByName(string name);
