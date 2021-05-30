@@ -256,12 +256,47 @@ DiagonalAttack(['5 3 12 3 1',
                 '5 22 33 11 1']);
                 
 function Orbit([width, height, x, y]){
+    let matr = [];
+    for (let r = 0; r < height; r++) {
+        matr.push([]);
+        for (let c = 0; c < width; c++) {
+            matr[r][c] = Math.max(Math.abs(r - x), Math.abs(c - y)) + 1;
+        }    
+    }
+    console.log('');
+    matr.forEach(row => console.log(row.join(' ')));
+}
+Orbit([4, 4, 0, 0]);
+Orbit([5, 5, 3, 2]);
+Orbit([3, 3, 2, 2]);
+
+function SpiralMatrix(rows, cols){
+    let matr = [];
+    for (let i = 0; i < rows; i++) {
+        matr.push([]);
+    }
+    let counter = 1;
+    let max = rows * cols;
+    let offset = 0;
+    let r = 0, c = -1;
+
+    while(counter <= max){
+        move(0, 1, cols - offset * 2);
+        move(1, 0, rows - offset * 2 - 1);
+        move(0, -1, cols - offset * 2 - 1);
+        move(-1, 0, rows - offset * 2 - 2);
+        offset++;
+    }
+    function move(dr, dc, len){
+        for (let i = 0; i < len && counter <= max; i++) {
+            r += dr;
+            c += dc;
+            matr[r][c] = counter++;          
+        }
+    }
+    matr.forEach(row => console.log(row.join(' ')));
 
 }
-
-Orbit([4, 4, 0, 0]);
-
-
-
+ SpiralMatrix(5, 9);
 
 console.log('end')
