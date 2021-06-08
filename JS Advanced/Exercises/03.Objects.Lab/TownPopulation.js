@@ -1,11 +1,13 @@
 function CreateCityRegistry(input){
     let result = {};
-    input.map(x => x.split(' <-> ')).map(([x, y]) => [x, Number(y)]).forEach(([city, population]) => {
-        if(result[city]){
-             population += result[city];
-        }
-        result[city] = population;
-    });
+    input.map(x => x.split(' <-> '))
+            .map(([x, y]) => [x, Number(y)])
+            .forEach(([city, population]) => {
+                    if(result[city]){
+                        population += result[city];
+                    }
+                    result[city] = population;
+                });
 
     Object.entries(result).forEach(([city, population]) => 
         console.log(`${city} : ${population}`))
