@@ -1,28 +1,16 @@
 function Solve(strArr){
-    let table = strArr.reduce((a, row) => {
-        a.push(row.split(/\s*\|\s*/).filter(x => x));
-        return a;
-    }, []);
+    let table = strArr.map(row => row.split(/\s*\|\s*/).filter(x => x));
 
     let heads = table.shift();
 
-    console.log(
-        JSON.stringify(
-            table.reduce((a, row,) => {
-                a.push(
-                    row.reduce((obj, data, i) => {
-                        if(i == 0){
-                            obj[heads[i]] = data;
-                        }else{
-                            obj[heads[i]] = Math.round(data * 100) / 100;
-                        }
-                        return obj;
-                    }, {})
-                )
-                return a;
-            }, [])
-        )
-    )
+    return JSON.stringify(table.map(makeCityObj));
+
+    function makeCityObj(row){
+            return row.reduce((city, data, i) => {
+                city[heads[i]] = (i == 0? data:Math.round(Number(data) * 100) / 100);
+                return city;
+             }, {});
+        }
 }
 
 Solve(
