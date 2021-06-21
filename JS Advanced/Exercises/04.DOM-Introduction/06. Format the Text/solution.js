@@ -8,7 +8,7 @@ function solve() {
 
   for (let i = 0; i < sentences.length; i++) {
     let p = document.createElement('p');
-    p.appendChild(document.createTextNode(sentences.slice(i, i + 3).join('')));
+    p.textContent = sentences.slice(i, i + 3).join('');
     output.appendChild(p);
     i += 2;   
   }

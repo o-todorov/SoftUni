@@ -4,17 +4,14 @@ function search() {
    let result = document.querySelector('#result');
    result.textContent = '';
 
-   for (let townname of towns) {
-      townname.removeAttribute('style');
-   }
+   towns.forEach(t =>  t.removeAttribute('style'));
 
-   let text = document.querySelector('input[type="text"]').value;
+   let text = document.querySelector('#searchText').value;
    if(text == '') return;
 
+   let selectedstyle = 'font-weight: bold; text-decoration: underline';
    let matched = towns.filter(e => e.textContent.includes(text));
+   matched.forEach(e => e.setAttribute('style', selectedstyle));
 
    result.textContent = `${matched.length} matches found`;
-   
-   let selectedstyle = 'font-weight: bold; text-decoration: underline';
-   matched.forEach(e => e.setAttribute('style', selectedstyle));
 }
