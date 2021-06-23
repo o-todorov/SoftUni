@@ -15,7 +15,7 @@ function create(words) {
    function onclick(event){
       if(event.target.matches('#content div')){
          event.target.firstChild.style.display = 'block';
-      content
+
       /*if(event.target.parentElement.tagName = 'content'){
          event.target.firstChild.style.display = 'block';
       content*/

@@ -14,10 +14,8 @@ function attachEventsListeners() {
     function convert(){
         let inputUnit = document.querySelector('#inputUnits').value;
         let inputDist = Number(document.querySelector('#inputDistance').value);
-        console.log(inputUnit);
         let outputUnit = document.querySelector('#outputUnits').value;
         let outputDistElement = document.querySelector('#outputDistance');
-        console.log(outputUnit);
         let converted = inputDist * rates[inputUnit] / rates[outputUnit];
         outputDistElement.value = converted;
     }

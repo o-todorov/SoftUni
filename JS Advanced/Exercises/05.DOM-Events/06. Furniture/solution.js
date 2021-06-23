@@ -37,18 +37,18 @@ function solve() {
 
   function buyItem(){
     let rows = Array.from(tbody.querySelectorAll('tr'))
-            .filter(r => r.children[4].children[0].checked)
+            .filter(r => r.querySelector('input:checked'))
             .map(r => {return {name: r.children[1].textContent,
                               price: Number(r.children[2].textContent),
                               decFactor: Number(r.children[3].textContent)}});
 
-    let names           = rows.reduce((arr, x) => {arr.push(x.name); return arr;}, []);  
-    let totalPrice      = rows.reduce((t, x) => t + x.price, 0);  
-    let totalDecFactor  = rows.reduce((t, x) => t + x.decFactor, 0);  
+    let names           = rows.map(item => item.name).join(', ');  
+    let totalPrice      = rows.reduce((t, item) => t + item.price, 0).toFixed(2);  
+    let totalDecFactor  = rows.reduce((t, item) => t + item.decFactor, 0);  
     let avgDecFactor    = totalDecFactor / rows.length;
 
-    boughtArea.value = `Bought furniture: ${names.join(', ')}\n`;
-    boughtArea.value += `Total price: ${totalPrice.toFixed(2)}\n`;
+    boughtArea.value = `Bought furniture: ${names}\n`;
+    boughtArea.value += `Total price: ${totalPrice}\n`;
     boughtArea.value += `Average decoration factor: ${avgDecFactor}`;
   }
 }
