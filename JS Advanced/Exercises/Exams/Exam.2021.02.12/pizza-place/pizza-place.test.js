@@ -22,7 +22,7 @@ describe("Tests for pizza place", () => {
         it("Should throw when order a drink only or nothing", () => {
             let drinkName = 'Cola';
             expect(() => pizzUni.makeAnOrder({orderedDrink: drinkName})).to.throw();
-            expect(() => pizzUni.makeAnOrder({})).to.throw();
+            expect(pizzUni.makeAnOrder.bind(null, {})).to.throw();
         });
      });
     describe("Tests for getRemainingWork function", () =>{
