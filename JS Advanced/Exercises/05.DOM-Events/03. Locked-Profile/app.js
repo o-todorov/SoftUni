@@ -7,12 +7,12 @@ function lockedProfile() {
     function showMore(event){
         let target = event.target;
         let hiddenContainer = target.parentElement.querySelector('div');
-        let lockValue = target.parentElement.querySelector('input[type="radio"]:checked').value;
+        let locked = target.parentElement.querySelector('input[type="radio"]:checked').value == 'lock';
         
-        if( lockValue === 'unlock'){
-            let show = (target.textContent == 'Show more');
-            target.textContent = show?'Hide it':'Show more';
-            hiddenContainer.style.display = show?'block': '';
-        }
-    }
+        if( locked ) return;
+
+        let show = (target.textContent == 'Show more');
+        target.textContent = show?'Hide it':'Show more';
+        hiddenContainer.style.display = show?'block': '';
+}
 }
