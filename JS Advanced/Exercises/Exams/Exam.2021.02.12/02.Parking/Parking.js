@@ -58,13 +58,21 @@ class Parking{
 }
 
 
+try{
 const parking = new Parking(12);
 
-console.log(parking.addCar("Colvo t600", "TX3691CA"));
-parking.addCar('Zazka', 'ST1345SA');
-parking.addCar('Audi', 'ST1345S3');
-parking.addCar('BMW', 'ST1345Sf');
-parking.addCar('Giat', 'ST1345Sq');
-parking.pay('TX3691CA');
-parking.removeCar('TX3691CA')
+console.log(parking.addCar("volvo t600", "TX3691CA"));
+console.log(parking.addCar("volvo t600", "TX3691CB"));
+console.log(parking.addCar("volvo t600", "TX3691CC"));
+
 console.log(parking.getStatistics());
+
+console.log(parking.pay("TX3691CA"));
+console.log(parking.pay("TX3691CB"));
+console.log(parking.getStatistics("TX3691CA"));
+console.log(parking.removeCar("TX3691CA"));
+console.log(parking.getStatistics());
+console.log("end");
+}catch(e){
+    console.log(e);
+}
