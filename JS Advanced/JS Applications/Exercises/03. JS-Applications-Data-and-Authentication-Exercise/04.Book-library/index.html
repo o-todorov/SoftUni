@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <button id="loadBooks">LOAD ALL BOOKS</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="books">
+            <tr>
+                <td>Harry Poter</td>
+                <td>J. K. Rowling</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Game of Thrones</td>
+                <td>George R. R. Martin</td>
+                <td>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form id="form">
+        <h3>Create book</h3>
+        <div>
+            <label for="title">TITLE</label>
+            <input type="text" id="title" name="title" placeholder="Title...">
+        </div>
+        <div>
+            <label for="author">AUTHOR</label>
+            <input type="text" id="author" name="author" placeholder="Author...">
+        </div>
+        <button id="submit" style="margin-top: 30px;" state="create">Submit</button>
+    </form>
+    <script src="./app.js"></script>
+</body>
+</html>
+
+<!--Feel free to change/update/modify the HTML Structure-->
